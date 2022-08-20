@@ -136,37 +136,37 @@ public class Main extends Application{
         identifier.setLayoutY(5);
 
         {
-            c1Field.setPromptText("Point 1");
+            c1Field.setPromptText("Point 1X, Point 1Y");
             c1Field.setFocusTraversable(false);
             c1Field.setLayoutX(450);
             c1Field.setLayoutY(35);
             c1Field.getText();
 
-            c2Field.setPromptText("Point 2");
+            c2Field.setPromptText("Point 2X, Point 2Y");
             c2Field.setFocusTraversable(false);
             c2Field.setLayoutX(450);
             c2Field.setLayoutY(65);
             c2Field.getText();
 
-            c3Field.setPromptText("Point 3");
+            c3Field.setPromptText("Point 3X, Point 3Y");
             c3Field.setFocusTraversable(false);
             c3Field.setLayoutX(450);
             c3Field.setLayoutY(95);
             c3Field.getText();
 
-            c4Field.setPromptText("Point 4");
+            c4Field.setPromptText("Point 4X, Point 4Y");
             c4Field.setFocusTraversable(false);
             c4Field.setLayoutX(450);
             c4Field.setLayoutY(125);
             c4Field.getText();
 
-            c5Field.setPromptText("Point 5");
+            c5Field.setPromptText("Point 5X, Point 5Y");
             c5Field.setFocusTraversable(false);
             c5Field.setLayoutX(450);
             c5Field.setLayoutY(155);
             c5Field.getText();
 
-            c6Field.setPromptText("Point 6");
+            c6Field.setPromptText("Point 6X, Point 6Y");
             c6Field.setFocusTraversable(false);
             c6Field.setLayoutX(450);
             c6Field.setLayoutY(185);
@@ -174,37 +174,37 @@ public class Main extends Application{
 
             //column 2
 
-            c7Field.setPromptText("Point 7");
+            c7Field.setPromptText("Point 7X, Point 7Y");
             c7Field.setFocusTraversable(false);
             c7Field.setLayoutX(610);
             c7Field.setLayoutY(35);
             c7Field.getText();
 
-            c8Field.setPromptText("Point 8");
+            c8Field.setPromptText("Point 8X, Point 8Y");
             c8Field.setFocusTraversable(false);
             c8Field.setLayoutX(610);
             c8Field.setLayoutY(65);
             c8Field.getText();
 
-            c9Field.setPromptText("Point 9");
+            c9Field.setPromptText("Point 9X, Point 9Y");
             c9Field.setFocusTraversable(false);
             c9Field.setLayoutX(610);
             c9Field.setLayoutY(95);
             c9Field.getText();
 
-            c10Field.setPromptText("Point 10");
+            c10Field.setPromptText("Point 10X, Point 10Y");
             c10Field.setFocusTraversable(false);
             c10Field.setLayoutX(610);
             c10Field.setLayoutY(125);
             c10Field.getText();
 
-            c11Field.setPromptText("Point 11");
+            c11Field.setPromptText("Point 11X, Point 11Y");
             c11Field.setFocusTraversable(false);
             c11Field.setLayoutX(610);
             c11Field.setLayoutY(155);
             c11Field.getText();
 
-            c12Field.setPromptText("Point 12");
+            c12Field.setPromptText("Point 12X, Point 12Y");
             c12Field.setFocusTraversable(false);
             c12Field.setLayoutX(610);
             c12Field.setLayoutY(185);
@@ -231,7 +231,7 @@ public class Main extends Application{
         g.getChildren().addAll(
                 startCalculation,areaLabel,DistanceRtG,DistanceGtB,DistanceBtR,identifier,
                 submit,clear,c1Field,c2Field,c3Field,c4Field,c5Field,c6Field,c7Field,c8Field,c9Field,
-                c10Field,c11Field,c12Field);
+                c10Field,c11Field,c12Field,c1c2,c2c3,c3c4,c4c5,c5c6,c6c7,c7c8,c8c9,c9c10,c10c11,c11c12,c12c1);
     }
 
     public void handleSubmitAction(ActionEvent event){
@@ -243,30 +243,114 @@ public class Main extends Application{
             && !c10Field.getText().isEmpty() && !c11Field.getText().isEmpty() && !c12Field.getText().isEmpty()) {
 
                 identifier.setText("Specific Coordinates: (Parsed)");
-                c1.setLayoutX(Double.parseDouble(c1Field.getText()));
 
-                c2.setLayoutX(Double.parseDouble(c2Field.getText()));
+                String[] c1LOC = c1Field.getText().split(",");
+                String[] c2LOC = c2Field.getText().split(",");
+                String[] c3LOC = c3Field.getText().split(",");
+                String[] c4LOC = c4Field.getText().split(",");
+                String[] c5LOC = c5Field.getText().split(",");
+                String[] c6LOC = c6Field.getText().split(",");
+                String[] c7LOC = c7Field.getText().split(",");
+                String[] c8LOC = c8Field.getText().split(",");
+                String[] c9LOC = c9Field.getText().split(",");
+                String[] c10LOC = c10Field.getText().split(",");
+                String[] c11LOC = c11Field.getText().split(",");
+                String[] c12LOC = c12Field.getText().split(",");
 
-                c3.setLayoutX(Double.parseDouble(c3Field.getText()));
+                //retrieves x and y coordinates from split array
+                {
+                    c1.setLayoutX(Double.parseDouble(c1LOC[0]));
+                    c2.setLayoutX(Double.parseDouble(c2LOC[0]));
+                    c3.setLayoutX(Double.parseDouble(c3LOC[0]));
+                    c4.setLayoutX(Double.parseDouble(c4LOC[0]));
+                    c5.setLayoutX(Double.parseDouble(c5LOC[0]));
+                    c6.setLayoutX(Double.parseDouble(c6LOC[0]));
+                    c7.setLayoutX(Double.parseDouble(c7LOC[0]));
+                    c8.setLayoutX(Double.parseDouble(c8LOC[0]));
+                    c9.setLayoutX(Double.parseDouble(c9LOC[0]));
+                    c10.setLayoutX(Double.parseDouble(c10LOC[0]));
+                    c11.setLayoutX(Double.parseDouble(c11LOC[0]));
+                    c12.setLayoutX(Double.parseDouble(c12LOC[0]));
 
-                /*
-                redToGreen.setStartX(c1.getLayoutX());
-                redToGreen.setStartY(c1.getLayoutY());
-                redToGreen.setEndX(c2.getLayoutX());
-                redToGreen.setEndY(c2.getLayoutY());
+                    c1.setLayoutY(Double.parseDouble(c1LOC[1]));
+                    c2.setLayoutY(Double.parseDouble(c2LOC[1]));
+                    c3.setLayoutY(Double.parseDouble(c3LOC[1]));
+                    c4.setLayoutY(Double.parseDouble(c4LOC[1]));
+                    c5.setLayoutY(Double.parseDouble(c5LOC[1]));
+                    c6.setLayoutY(Double.parseDouble(c6LOC[1]));
+                    c7.setLayoutY(Double.parseDouble(c7LOC[1]));
+                    c8.setLayoutY(Double.parseDouble(c8LOC[1]));
+                    c9.setLayoutY(Double.parseDouble(c9LOC[1]));
+                    c10.setLayoutY(Double.parseDouble(c10LOC[1]));
+                    c11.setLayoutY(Double.parseDouble(c11LOC[1]));
+                    c12.setLayoutY(Double.parseDouble(c12LOC[1]));
+                }
 
-                greenToBlue.setStartX(c2.getLayoutX());
-                greenToBlue.setStartY(c2.getLayoutY());
-                greenToBlue.setEndX(c3.getLayoutX());
-                greenToBlue.setEndY(c3.getLayoutY());
+                c1c2.setStartX(c1.getLayoutX());
+                c1c2.setStartY(c1.getLayoutY());
+                c1c2.setEndX(c2.getLayoutX());
+                c1c2.setEndY(c2.getLayoutY());
 
-                blueToRed.setStartX(c3.getLayoutX());
-                blueToRed.setStartY(c3.getLayoutY());
-                blueToRed.setEndX(c1.getLayoutX());
-                blueToRed.setEndY(c1.getLayoutY());
+                c2c3.setStartX(c2.getLayoutX());
+                c2c3.setStartY(c2.getLayoutY());
+                c2c3.setEndX(c3.getLayoutX());
+                c2c3.setEndY(c3.getLayoutY());
 
-                handleCalculations(c1, c2, c3);
-                */
+                //vector plotting
+                {
+                    c3c4.setStartX(c3.getLayoutX());
+                    c3c4.setStartY(c3.getLayoutY());
+                    c3c4.setEndX(c4.getLayoutX());
+                    c3c4.setEndY(c4.getLayoutY());
+
+                    c4c5.setStartX(c4.getLayoutX());
+                    c4c5.setStartY(c4.getLayoutY());
+                    c4c5.setEndX(c5.getLayoutX());
+                    c4c5.setEndY(c5.getLayoutY());
+
+                    c5c6.setStartX(c5.getLayoutX());
+                    c5c6.setStartY(c5.getLayoutY());
+                    c5c6.setEndX(c6.getLayoutX());
+                    c5c6.setEndY(c6.getLayoutY());
+
+                    c6c7.setStartX(c6.getLayoutX());
+                    c6c7.setStartY(c6.getLayoutY());
+                    c6c7.setEndX(c7.getLayoutX());
+                    c6c7.setEndY(c7.getLayoutY());
+
+                    c7c8.setStartX(c7.getLayoutX());
+                    c7c8.setStartY(c7.getLayoutY());
+                    c7c8.setEndX(c8.getLayoutX());
+                    c7c8.setEndY(c8.getLayoutY());
+
+                    c8c9.setStartX(c8.getLayoutX());
+                    c8c9.setStartY(c8.getLayoutY());
+                    c8c9.setEndX(c9.getLayoutX());
+                    c8c9.setEndY(c9.getLayoutY());
+
+                    c9c10.setStartX(c9.getLayoutX());
+                    c9c10.setStartY(c9.getLayoutY());
+                    c9c10.setEndX(c10.getLayoutX());
+                    c9c10.setEndY(c10.getLayoutY());
+
+                    c10c11.setStartX(c10.getLayoutX());
+                    c10c11.setStartY(c10.getLayoutY());
+                    c10c11.setEndX(c11.getLayoutX());
+                    c10c11.setEndY(c11.getLayoutY());
+
+                    c11c12.setStartX(c11.getLayoutX());
+                    c11c12.setStartY(c11.getLayoutY());
+                    c11c12.setEndX(c12.getLayoutX());
+                    c11c12.setEndY(c12.getLayoutY());
+
+                    c12c1.setStartX(c12.getLayoutX());
+                    c12c1.setStartY(c12.getLayoutY());
+                    c12c1.setEndX(c1.getLayoutX());
+                    c12c1.setEndY(c1.getLayoutY());
+                }
+
+                handleCalculations(event);
+
             } else {
                 identifier.setText("Specific Coordinates: (Parse Failed)");
                 c1.setLayoutX(c1.getLayoutX());
@@ -434,6 +518,70 @@ public class Main extends Application{
 
         double btr = 0.0264583333 * Math.sqrt(Math.pow((c3.getLayoutX()-c1.getLayoutX()),2)+Math.pow(c3.getLayoutY()-c1.getLayoutY(),2));
         DistanceBtR.setText("Distance Blue to Red: " + btr + "cm");
+
+
+        //vector plotting
+        {
+            c1c2.setStartX(c1.getLayoutX());
+            c1c2.setStartY(c1.getLayoutY());
+            c1c2.setEndX(c2.getLayoutX());
+            c1c2.setEndY(c2.getLayoutY());
+
+            c2c3.setStartX(c2.getLayoutX());
+            c2c3.setStartY(c2.getLayoutY());
+            c2c3.setEndX(c3.getLayoutX());
+            c2c3.setEndY(c3.getLayoutY());
+
+            c3c4.setStartX(c3.getLayoutX());
+            c3c4.setStartY(c3.getLayoutY());
+            c3c4.setEndX(c4.getLayoutX());
+            c3c4.setEndY(c4.getLayoutY());
+
+            c4c5.setStartX(c4.getLayoutX());
+            c4c5.setStartY(c4.getLayoutY());
+            c4c5.setEndX(c5.getLayoutX());
+            c4c5.setEndY(c5.getLayoutY());
+
+            c5c6.setStartX(c5.getLayoutX());
+            c5c6.setStartY(c5.getLayoutY());
+            c5c6.setEndX(c6.getLayoutX());
+            c5c6.setEndY(c6.getLayoutY());
+
+            c6c7.setStartX(c6.getLayoutX());
+            c6c7.setStartY(c6.getLayoutY());
+            c6c7.setEndX(c7.getLayoutX());
+            c6c7.setEndY(c7.getLayoutY());
+
+            c7c8.setStartX(c7.getLayoutX());
+            c7c8.setStartY(c7.getLayoutY());
+            c7c8.setEndX(c8.getLayoutX());
+            c7c8.setEndY(c8.getLayoutY());
+
+            c8c9.setStartX(c8.getLayoutX());
+            c8c9.setStartY(c8.getLayoutY());
+            c8c9.setEndX(c9.getLayoutX());
+            c8c9.setEndY(c9.getLayoutY());
+
+            c9c10.setStartX(c9.getLayoutX());
+            c9c10.setStartY(c9.getLayoutY());
+            c9c10.setEndX(c10.getLayoutX());
+            c9c10.setEndY(c10.getLayoutY());
+
+            c10c11.setStartX(c10.getLayoutX());
+            c10c11.setStartY(c10.getLayoutY());
+            c10c11.setEndX(c11.getLayoutX());
+            c10c11.setEndY(c11.getLayoutY());
+
+            c11c12.setStartX(c11.getLayoutX());
+            c11c12.setStartY(c11.getLayoutY());
+            c11c12.setEndX(c12.getLayoutX());
+            c11c12.setEndY(c12.getLayoutY());
+
+            c12c1.setStartX(c12.getLayoutX());
+            c12c1.setStartY(c12.getLayoutY());
+            c12c1.setEndX(c1.getLayoutX());
+            c12c1.setEndY(c1.getLayoutY());
+        }
 
         /*
         redToGreen.setStartX(c1.getLayoutX());
