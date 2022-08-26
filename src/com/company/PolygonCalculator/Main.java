@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
@@ -32,9 +31,18 @@ public class Main extends Application{
     //Labels for triangle info
     Label areaLabel = new Label("Total Area: ");
 
-    Label DistanceRtG = new Label("Distance Red to Green: ");
-    Label DistanceGtB = new Label("Distance Green to Blue: ");
-    Label DistanceBtR = new Label("Distance Blue to Red: ");
+    Label DistanceL1 = new Label("Line 1 Distance: ");
+    Label DistanceL2 = new Label("Line 2 Distance: ");
+    Label DistanceL3 = new Label("Line 3 Distance: ");
+    Label DistanceL4 = new Label("Line 4 Distance: ");
+    Label DistanceL5 = new Label("Line 5 Distance: ");
+    Label DistanceL6 = new Label("Line 6 Distance: ");
+    Label DistanceL7 = new Label("Line 7 Distance: ");
+    Label DistanceL8 = new Label("Line 8 Distance: ");
+    Label DistanceL9 = new Label("Line 9 Distance: ");
+    Label DistanceL10 = new Label("Line 10 Distance: ");
+    Label DistanceL11 = new Label("Line 11 Distance: ");
+    Label DistanceL12 = new Label("Line 12 Distance: ");
 
     Circle c1 = new Circle(x,y,10);
     Circle c2 = new Circle(x,y,10);
@@ -81,6 +89,21 @@ public class Main extends Application{
     Line c11c12 = new Line();
     Line c12c1 = new Line();
 
+    //labels
+    Label L1Identity = new Label("L1");
+    Label L2Identity = new Label("L2");
+    Label L3Identity = new Label("L3");
+    Label L4Identity = new Label("L4");
+    Label L5Identity = new Label("L5");
+    Label L6Identity = new Label("L6");
+    Label L7Identity = new Label("L7");
+    Label L8Identity = new Label("L8");
+    Label L9Identity = new Label("L9");
+    Label L10Identity = new Label("L10");
+    Label L11Identity = new Label("L11");
+    Label L12Identity = new Label("L12");
+
+
     //top g
     Group g = new Group();
 
@@ -92,10 +115,9 @@ public class Main extends Application{
 
     public void start(Stage stage){
         //top g
-        com.sun.glass.ui.Robot robot = com.sun.glass.ui.Application.GetApplication().createRobot();
 
         //scene styling and initialization
-        Scene scene = new Scene(g, 800, 500);
+        Scene scene = new Scene(g, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Triangle Area Calculator");
         scene.setFill(createGridPattern());
@@ -117,17 +139,53 @@ public class Main extends Application{
         areaLabel.setLayoutY(15);
 
         //distance label styling
-        DistanceRtG.setFont(Font.font(20));
-        DistanceRtG.setLayoutX(10);
-        DistanceRtG.setLayoutY(35);
+        DistanceL1.setFont(Font.font(20));
+        DistanceL1.setLayoutX(10);
+        DistanceL1.setLayoutY(35);
 
-        DistanceGtB.setFont(Font.font(20));
-        DistanceGtB.setLayoutX(10);
-        DistanceGtB.setLayoutY(55);
+        DistanceL2.setFont(Font.font(20));
+        DistanceL2.setLayoutX(10);
+        DistanceL2.setLayoutY(55);
 
-        DistanceBtR.setFont(Font.font(20));
-        DistanceBtR.setLayoutX(10);
-        DistanceBtR.setLayoutY(75);
+        DistanceL3.setFont(Font.font(20));
+        DistanceL3.setLayoutX(10);
+        DistanceL3.setLayoutY(75);
+
+        DistanceL4.setFont(Font.font(20));
+        DistanceL4.setLayoutX(10);
+        DistanceL4.setLayoutY(95);
+
+        DistanceL5.setFont(Font.font(20));
+        DistanceL5.setLayoutX(10);
+        DistanceL5.setLayoutY(115);
+
+        DistanceL6.setFont(Font.font(20));
+        DistanceL6.setLayoutX(10);
+        DistanceL6.setLayoutY(135);
+
+        DistanceL7.setFont(Font.font(20));
+        DistanceL7.setLayoutX(10);
+        DistanceL7.setLayoutY(155);
+
+        DistanceL8.setFont(Font.font(20));
+        DistanceL8.setLayoutX(10);
+        DistanceL8.setLayoutY(175);
+
+        DistanceL9.setFont(Font.font(20));
+        DistanceL9.setLayoutX(10);
+        DistanceL9.setLayoutY(195);
+
+        DistanceL10.setFont(Font.font(20));
+        DistanceL10.setLayoutX(10);
+        DistanceL10.setLayoutY(215);
+
+        DistanceL11.setFont(Font.font(20));
+        DistanceL11.setLayoutX(10);
+        DistanceL11.setLayoutY(235);
+
+        DistanceL12.setFont(Font.font(20));
+        DistanceL12.setLayoutX(10);
+        DistanceL12.setLayoutY(255);
 
         //angle label styling
 
@@ -229,11 +287,13 @@ public class Main extends Application{
 
 
         g.getChildren().addAll(
-                startCalculation,areaLabel,DistanceRtG,DistanceGtB,DistanceBtR,identifier,
+                startCalculation,areaLabel,DistanceL1,DistanceL2,DistanceL3,DistanceL4,DistanceL5,
+                DistanceL6,DistanceL7,DistanceL8,DistanceL9,DistanceL10,DistanceL11,DistanceL12,identifier,
                 submit,clear,c1Field,c2Field,c3Field,c4Field,c5Field,c6Field,c7Field,c8Field,c9Field,
                 c10Field,c11Field,c12Field,c1c2,c2c3,c3c4,c4c5,c5c6,c6c7,c7c8,c8c9,c9c10,c10c11,c11c12,c12c1);
     }
 
+    boolean created = false;
     public void handleSubmitAction(ActionEvent event){
 
         try{
@@ -363,7 +423,8 @@ public class Main extends Application{
                 c3.setLayoutY(c3.getLayoutY());
             }
         } catch (Exception p){
-            identifier.setText("Specific Coordinates: (Non-Float Values!)");
+            identifier.setText("Specific Coordinates: (Error!)");
+
         }
     }
     public void handleClearAction(ActionEvent event){
@@ -406,7 +467,6 @@ public class Main extends Application{
         return pattern;
 
     }
-
 
     //setting public click counter to identify if points have been plotted
     int click = 0;
@@ -504,20 +564,132 @@ public class Main extends Application{
                 break;
         }
     }
+    public static double polygonArea(double X[], double Y[], int n) {
+        // Initialize area
+        double area = 0.0;
+
+        // Calculate value of shoelace formula
+        int j = n - 1;
+        for (int i = 0; i < n; i++) {
+            area += (X[j] + X[i]) * (Y[j] - Y[i]);
+
+            // j is previous vertex to i
+            j = i;
+        }
+
+        // Return absolute value
+        return Math.abs(area / 2.0);
+    }
 
     public void handleCalculations(ActionEvent event){
-        double area = 0;
-        areaLabel.setText("Total Area: " + area + "cm²");
+
+        
+        
+        double X[] = {c1.getLayoutX(),c2.getLayoutX(),c3.getLayoutX(),c4.getLayoutX(),c5.getLayoutX(),
+                c6.getLayoutX(),c7.getLayoutX(),c8.getLayoutX(),c9.getLayoutX(),c10.getLayoutX(),c11.getLayoutX(),
+                c12.getLayoutX()};
+
+        double Y[] = {c1.getLayoutY(),c2.getLayoutY(),c3.getLayoutY(),c4.getLayoutY(),c5.getLayoutY(),
+                c6.getLayoutY(),c7.getLayoutY(),c8.getLayoutY(),c9.getLayoutY(),c10.getLayoutY(),c11.getLayoutY(),
+                c12.getLayoutY()};
+
+        int n = 12;
+
+        areaLabel.setText("Total Area: " +polygonArea(X,Y,n)*0.0264583333*0.0264583333+"cm²");
+
 
         //calculating vector magnitudes using distance formula
-        double rtg = 0.0264583333 * Math.sqrt(Math.pow((c1.getLayoutX()-c2.getLayoutX()),2)+Math.pow(c1.getLayoutY()-c2.getLayoutY(),2));
-        DistanceRtG.setText("Distance Red to Green: " + rtg + "cm");
+        double line1 = 0.0264583333 * Math.sqrt(Math.pow((c1.getLayoutX()-c2.getLayoutX()),2)+Math.pow(c1.getLayoutY()-c2.getLayoutY(),2));
+        DistanceL1.setText("Line 1 Distance: " + line1 + "cm");
 
-        double gtb = 0.0264583333 * Math.sqrt(Math.pow((c2.getLayoutX()-c3.getLayoutX()),2)+Math.pow(c2.getLayoutY()-c3.getLayoutY(),2));
-        DistanceGtB.setText("Distance Green to Blue: " + gtb + "cm");
+        double line2 = 0.0264583333 * Math.sqrt(Math.pow((c2.getLayoutX()-c3.getLayoutX()),2)+Math.pow(c2.getLayoutY()-c3.getLayoutY(),2));
+        DistanceL2.setText("Line 2 Distance: " + line2 + "cm");
 
-        double btr = 0.0264583333 * Math.sqrt(Math.pow((c3.getLayoutX()-c1.getLayoutX()),2)+Math.pow(c3.getLayoutY()-c1.getLayoutY(),2));
-        DistanceBtR.setText("Distance Blue to Red: " + btr + "cm");
+        double line3 = 0.0264583333 * Math.sqrt(Math.pow((c3.getLayoutX()-c4.getLayoutX()),2)+Math.pow(c3.getLayoutY()-c4.getLayoutY(),2));
+        DistanceL3.setText("Line 3 Distance: " + line3 + "cm");
+
+        double line4 = 0.0264583333 * Math.sqrt(Math.pow((c4.getLayoutX()-c5.getLayoutX()),2)+Math.pow(c4.getLayoutY()-c5.getLayoutY(),2));
+        DistanceL4.setText("Line 4 Distance: " + line4 + "cm");
+
+        double line5 = 0.0264583333 * Math.sqrt(Math.pow((c5.getLayoutX()-c6.getLayoutX()),2)+Math.pow(c5.getLayoutY()-c6.getLayoutY(),2));
+        DistanceL5.setText("Line 5 Distance: " + line5 + "cm");
+
+        double line6 = 0.0264583333 * Math.sqrt(Math.pow((c6.getLayoutX()-c7.getLayoutX()),2)+Math.pow(c6.getLayoutY()-c7.getLayoutY(),2));
+        DistanceL6.setText("Line 6 Distance: " + line6 + "cm");
+
+        double line7 = 0.0264583333 * Math.sqrt(Math.pow((c7.getLayoutX()-c8.getLayoutX()),2)+Math.pow(c7.getLayoutY()-c8.getLayoutY(),2));
+        DistanceL7.setText("Line 7 Distance: " + line7 + "cm");
+
+        double line8 = 0.0264583333 * Math.sqrt(Math.pow((c8.getLayoutX()-c9.getLayoutX()),2)+Math.pow(c8.getLayoutY()-c9.getLayoutY(),2));
+        DistanceL8.setText("Line 8 Distance: " + line8 + "cm");
+
+        double line9 = 0.0264583333 * Math.sqrt(Math.pow((c9.getLayoutX()-c10.getLayoutX()),2)+Math.pow(c9.getLayoutY()-c10.getLayoutY(),2));
+        DistanceL9.setText("Line 9 Distance: " + line9 + "cm");
+
+        double line10 = 0.0264583333 * Math.sqrt(Math.pow((c10.getLayoutX()-c11.getLayoutX()),2)+Math.pow(c10.getLayoutY()-c11.getLayoutY(),2));
+        DistanceL10.setText("Line 10 Distance: " + line10 + "cm");
+
+        double line11 = 0.0264583333 * Math.sqrt(Math.pow((c11.getLayoutX()-c12.getLayoutX()),2)+Math.pow(c11.getLayoutY()-c12.getLayoutY(),2));
+        DistanceL11.setText("Line 11 Distance: " + line11 + "cm");
+
+        double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX()-c1.getLayoutX()),2)+Math.pow(c12.getLayoutY()-c1.getLayoutY(),2));
+        DistanceL12.setText("Line 12 Distance: " + line12 + "cm");
+
+        if(created == false){
+            g.getChildren().addAll(L1Identity,L2Identity,L3Identity,L4Identity,L5Identity,L6Identity,L7Identity,L8Identity,L9Identity,
+                    L10Identity,L11Identity,L12Identity);
+        }
+        created = true;
+
+
+        L1Identity.setLayoutX((c1.getLayoutX()+c2.getLayoutX())/2);
+        L1Identity.setLayoutY((c1.getLayoutY()+c2.getLayoutY())/2);
+        L1Identity.setTextFill(Color.RED);
+
+        L2Identity.setLayoutX((c2.getLayoutX()+c3.getLayoutX())/2);
+        L2Identity.setLayoutY((c2.getLayoutY()+c3.getLayoutY())/2);
+        L2Identity.setTextFill(Color.RED);
+
+        L3Identity.setLayoutX((c3.getLayoutX()+c4.getLayoutX())/2);
+        L3Identity.setLayoutY((c3.getLayoutY()+c4.getLayoutY())/2);
+        L3Identity.setTextFill(Color.RED);
+
+        L4Identity.setLayoutX((c4.getLayoutX()+c5.getLayoutX())/2);
+        L4Identity.setLayoutY((c4.getLayoutY()+c5.getLayoutY())/2);
+        L4Identity.setTextFill(Color.RED);
+
+        L5Identity.setLayoutX((c5.getLayoutX()+c6.getLayoutX())/2);
+        L5Identity.setLayoutY((c5.getLayoutY()+c6.getLayoutY())/2);
+        L5Identity.setTextFill(Color.RED);
+
+        L6Identity.setLayoutX((c6.getLayoutX()+c7.getLayoutX())/2);
+        L6Identity.setLayoutY((c6.getLayoutY()+c7.getLayoutY())/2);
+        L6Identity.setTextFill(Color.RED);
+
+        L7Identity.setLayoutX((c7.getLayoutX()+c8.getLayoutX())/2);
+        L7Identity.setLayoutY((c7.getLayoutY()+c8.getLayoutY())/2);
+        L7Identity.setTextFill(Color.RED);
+
+        L8Identity.setLayoutX((c8.getLayoutX()+c9.getLayoutX())/2);
+        L8Identity.setLayoutY((c8.getLayoutY()+c9.getLayoutY())/2);
+        L8Identity.setTextFill(Color.RED);
+
+        L9Identity.setLayoutX((c9.getLayoutX()+c10.getLayoutX())/2);
+        L9Identity.setLayoutY((c9.getLayoutY()+c10.getLayoutY())/2);
+        L9Identity.setTextFill(Color.RED);
+
+        L10Identity.setLayoutX((c10.getLayoutX()+c11.getLayoutX())/2);
+        L10Identity.setLayoutY((c10.getLayoutY()+c11.getLayoutY())/2);
+        L10Identity.setTextFill(Color.RED);
+
+        L11Identity.setLayoutX((c11.getLayoutX()+c12.getLayoutX())/2);
+        L11Identity.setLayoutY((c11.getLayoutY()+c12.getLayoutY())/2);
+        L11Identity.setTextFill(Color.RED);
+
+        L12Identity.setLayoutX((c12.getLayoutX()+c1.getLayoutX())/2);
+        L12Identity.setLayoutY((c12.getLayoutY()+c1.getLayoutY())/2);
+        L12Identity.setTextFill(Color.RED);
+
 
 
         //vector plotting
