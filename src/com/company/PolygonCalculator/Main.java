@@ -44,6 +44,7 @@ public class Main extends Application{
     Label DistanceL11 = new Label("Line 11 Distance: ");
     Label DistanceL12 = new Label("Line 12 Distance: ");
 
+    //generated circles with coordinates and radius
     Circle c1 = new Circle(x,y,10);
     Circle c2 = new Circle(x,y,10);
     Circle c3 = new Circle(x,y,10);
@@ -57,12 +58,13 @@ public class Main extends Application{
     Circle c11 = new Circle(x,y,10);
     Circle c12 = new Circle(x,y,10);
 
-
+    //created buttons
     Label identifier = new Label("Specific Coordinates: ");
     Button submit = new Button("Submit");
     Button clear = new Button("Clear");
     Button startCalculation = new Button("Calculate");
 
+    //created 12 text fields for manual coordinate input
     TextField c1Field = new TextField();
     TextField c2Field = new TextField();
     TextField c3Field = new TextField();
@@ -76,6 +78,7 @@ public class Main extends Application{
     TextField c11Field = new TextField();
     TextField c12Field = new TextField();
 
+    //created lines to connect all plotted points
     Line c1c2 = new Line();
     Line c2c3 = new Line();
     Line c3c4 = new Line();
@@ -89,7 +92,7 @@ public class Main extends Application{
     Line c11c12 = new Line();
     Line c12c1 = new Line();
 
-    //labels
+    //identifying vectors with labels
     Label L1Identity = new Label("L1");
     Label L2Identity = new Label("L2");
     Label L3Identity = new Label("L3");
@@ -103,19 +106,17 @@ public class Main extends Application{
     Label L11Identity = new Label("L11");
     Label L12Identity = new Label("L12");
 
-
     //top g
     Group g = new Group();
 
-
+    //launch
     public static void main(String[] args) {
         //gotta make this mf wake up right?
         Application.launch(args);
     }
 
+    //initializing program
     public void start(Stage stage){
-        //top g
-
         //scene styling and initialization
         Scene scene = new Scene(g, 800, 600);
         stage.setScene(scene);
@@ -139,60 +140,62 @@ public class Main extends Application{
         areaLabel.setLayoutY(15);
 
         //distance label styling
-        DistanceL1.setFont(Font.font(20));
-        DistanceL1.setLayoutX(10);
-        DistanceL1.setLayoutY(35);
+        {
+            DistanceL1.setFont(Font.font(20));
+            DistanceL1.setLayoutX(10);
+            DistanceL1.setLayoutY(35);
 
-        DistanceL2.setFont(Font.font(20));
-        DistanceL2.setLayoutX(10);
-        DistanceL2.setLayoutY(55);
+            DistanceL2.setFont(Font.font(20));
+            DistanceL2.setLayoutX(10);
+            DistanceL2.setLayoutY(55);
 
-        DistanceL3.setFont(Font.font(20));
-        DistanceL3.setLayoutX(10);
-        DistanceL3.setLayoutY(75);
+            DistanceL3.setFont(Font.font(20));
+            DistanceL3.setLayoutX(10);
+            DistanceL3.setLayoutY(75);
 
-        DistanceL4.setFont(Font.font(20));
-        DistanceL4.setLayoutX(10);
-        DistanceL4.setLayoutY(95);
+            DistanceL4.setFont(Font.font(20));
+            DistanceL4.setLayoutX(10);
+            DistanceL4.setLayoutY(95);
 
-        DistanceL5.setFont(Font.font(20));
-        DistanceL5.setLayoutX(10);
-        DistanceL5.setLayoutY(115);
+            DistanceL5.setFont(Font.font(20));
+            DistanceL5.setLayoutX(10);
+            DistanceL5.setLayoutY(115);
 
-        DistanceL6.setFont(Font.font(20));
-        DistanceL6.setLayoutX(10);
-        DistanceL6.setLayoutY(135);
+            DistanceL6.setFont(Font.font(20));
+            DistanceL6.setLayoutX(10);
+            DistanceL6.setLayoutY(135);
 
-        DistanceL7.setFont(Font.font(20));
-        DistanceL7.setLayoutX(10);
-        DistanceL7.setLayoutY(155);
+            DistanceL7.setFont(Font.font(20));
+            DistanceL7.setLayoutX(10);
+            DistanceL7.setLayoutY(155);
 
-        DistanceL8.setFont(Font.font(20));
-        DistanceL8.setLayoutX(10);
-        DistanceL8.setLayoutY(175);
+            DistanceL8.setFont(Font.font(20));
+            DistanceL8.setLayoutX(10);
+            DistanceL8.setLayoutY(175);
 
-        DistanceL9.setFont(Font.font(20));
-        DistanceL9.setLayoutX(10);
-        DistanceL9.setLayoutY(195);
+            DistanceL9.setFont(Font.font(20));
+            DistanceL9.setLayoutX(10);
+            DistanceL9.setLayoutY(195);
 
-        DistanceL10.setFont(Font.font(20));
-        DistanceL10.setLayoutX(10);
-        DistanceL10.setLayoutY(215);
+            DistanceL10.setFont(Font.font(20));
+            DistanceL10.setLayoutX(10);
+            DistanceL10.setLayoutY(215);
 
-        DistanceL11.setFont(Font.font(20));
-        DistanceL11.setLayoutX(10);
-        DistanceL11.setLayoutY(235);
+            DistanceL11.setFont(Font.font(20));
+            DistanceL11.setLayoutX(10);
+            DistanceL11.setLayoutY(235);
 
-        DistanceL12.setFont(Font.font(20));
-        DistanceL12.setLayoutX(10);
-        DistanceL12.setLayoutY(255);
+            DistanceL12.setFont(Font.font(20));
+            DistanceL12.setLayoutX(10);
+            DistanceL12.setLayoutY(255);
+        }
 
         //angle label styling
-
         identifier.setFont(Font.font(18));
         identifier.setLayoutX(450);
         identifier.setLayoutY(5);
 
+        //stylizing and retrieving characters from text fields
         {
             c1Field.setPromptText("Point 1X, Point 1Y");
             c1Field.setFocusTraversable(false);
@@ -269,7 +272,7 @@ public class Main extends Application{
             c12Field.getText();
         }
 
-
+        //setting positions of buttons
         submit.setLayoutX(450);
         submit.setLayoutY(215);
         clear.setLayoutX(510);
@@ -278,14 +281,13 @@ public class Main extends Application{
         startCalculation.setLayoutY(215);
 
 
-        //appending all nodes to group
-
-
+        //appending buttons to click listener adapter functions
         submit.setOnAction(this::handleSubmitAction);
         clear.setOnAction(this::handleClearAction);
         startCalculation.setOnAction(this::handleCalculations);
 
 
+        //appending all nodes to group
         g.getChildren().addAll(
                 startCalculation,areaLabel,DistanceL1,DistanceL2,DistanceL3,DistanceL4,DistanceL5,
                 DistanceL6,DistanceL7,DistanceL8,DistanceL9,DistanceL10,DistanceL11,DistanceL12,identifier,
@@ -293,9 +295,13 @@ public class Main extends Application{
                 c10Field,c11Field,c12Field,c1c2,c2c3,c3c4,c4c5,c5c6,c6c7,c7c8,c8c9,c9c10,c10c11,c11c12,c12c1);
     }
 
+    //boolean variable to make sure nodes are generated only once
     boolean created = false;
+
+    //function for when submit button is clicked
     public void handleSubmitAction(ActionEvent event){
 
+        //check if all fields have characters to be retrieved
         try{
             if (!c1Field.getText().isEmpty() && !c2Field.getText().isEmpty() && !c3Field.getText().isEmpty()
             && !c4Field.getText().isEmpty() && !c5Field.getText().isEmpty() && !c6Field.getText().isEmpty()
@@ -304,6 +310,7 @@ public class Main extends Application{
 
                 identifier.setText("Specific Coordinates: (Parsed)");
 
+                //split and distribute retrieved characters into an array for x and y positions
                 String[] c1LOC = c1Field.getText().split(",");
                 String[] c2LOC = c2Field.getText().split(",");
                 String[] c3LOC = c3Field.getText().split(",");
@@ -346,18 +353,19 @@ public class Main extends Application{
                     c12.setLayoutY(Double.parseDouble(c12LOC[1]));
                 }
 
-                c1c2.setStartX(c1.getLayoutX());
-                c1c2.setStartY(c1.getLayoutY());
-                c1c2.setEndX(c2.getLayoutX());
-                c1c2.setEndY(c2.getLayoutY());
 
-                c2c3.setStartX(c2.getLayoutX());
-                c2c3.setStartY(c2.getLayoutY());
-                c2c3.setEndX(c3.getLayoutX());
-                c2c3.setEndY(c3.getLayoutY());
-
-                //vector plotting
+                //draw vectors
                 {
+                    c1c2.setStartX(c1.getLayoutX());
+                    c1c2.setStartY(c1.getLayoutY());
+                    c1c2.setEndX(c2.getLayoutX());
+                    c1c2.setEndY(c2.getLayoutY());
+
+                    c2c3.setStartX(c2.getLayoutX());
+                    c2c3.setStartY(c2.getLayoutY());
+                    c2c3.setEndX(c3.getLayoutX());
+                    c2c3.setEndY(c3.getLayoutY());
+
                     c3c4.setStartX(c3.getLayoutX());
                     c3c4.setStartY(c3.getLayoutY());
                     c3c4.setEndX(c4.getLayoutX());
@@ -412,22 +420,39 @@ public class Main extends Application{
                 handleCalculations(event);
 
             } else {
+                //pushes all points back to their original point in the case of a failed parse
                 identifier.setText("Specific Coordinates: (Parse Failed)");
                 c1.setLayoutX(c1.getLayoutX());
                 c1.setLayoutY(c1.getLayoutY());
-
                 c2.setLayoutX(c2.getLayoutX());
                 c2.setLayoutY(c2.getLayoutY());
-
                 c3.setLayoutX(c3.getLayoutX());
                 c3.setLayoutY(c3.getLayoutY());
+                c4.setLayoutX(c4.getLayoutX());
+                c4.setLayoutY(c4.getLayoutY());
+                c5.setLayoutX(c5.getLayoutX());
+                c5.setLayoutY(c5.getLayoutY());
+                c6.setLayoutX(c6.getLayoutX());
+                c6.setLayoutY(c6.getLayoutY());
+                c7.setLayoutX(c7.getLayoutX());
+                c7.setLayoutY(c7.getLayoutY());
+                c8.setLayoutX(c8.getLayoutX());
+                c8.setLayoutY(c8.getLayoutY());
+                c9.setLayoutX(c9.getLayoutX());
+                c9.setLayoutY(c9.getLayoutY());
+                c10.setLayoutX(c10.getLayoutX());
+                c10.setLayoutY(c10.getLayoutY());
+                c11.setLayoutX(c11.getLayoutX());
+                c11.setLayoutY(c11.getLayoutY());
+                c12.setLayoutX(c12.getLayoutX());
+                c12.setLayoutY(c12.getLayoutY());
             }
         } catch (Exception p){
             identifier.setText("Specific Coordinates: (Error!)");
-
         }
     }
     public void handleClearAction(ActionEvent event){
+        //clears all fields
         c1Field.clear();
         c2Field.clear();
         c3Field.clear();
@@ -444,6 +469,7 @@ public class Main extends Application{
         identifier.setText("Specific Coordinates: ");
     }
 
+    //function for creating grid
     public ImagePattern createGridPattern() {
 
         //square 1 generation
@@ -564,27 +590,28 @@ public class Main extends Application{
                 break;
         }
     }
+
+    //calculates area of polygon
     public static double polygonArea(double X[], double Y[], int n) {
-        // Initialize area
         double area = 0.0;
 
-        // Calculate value of shoelace formula
+        //calculate area using shoelace formula
         int j = n - 1;
         for (int i = 0; i < n; i++) {
             area += (X[j] + X[i]) * (Y[j] - Y[i]);
 
-            // j is previous vertex to i
+            //j is previous vertex to i
             j = i;
         }
 
-        // Return absolute value
+        //return absolute value
         return Math.abs(area / 2.0);
     }
 
+    //runs whenever calculate button is pressed
     public void handleCalculations(ActionEvent event){
 
-        
-        
+        //places all x and y points into a separate array for the area function to use
         double X[] = {c1.getLayoutX(),c2.getLayoutX(),c3.getLayoutX(),c4.getLayoutX(),c5.getLayoutX(),
                 c6.getLayoutX(),c7.getLayoutX(),c8.getLayoutX(),c9.getLayoutX(),c10.getLayoutX(),c11.getLayoutX(),
                 c12.getLayoutX()};
@@ -593,10 +620,11 @@ public class Main extends Application{
                 c6.getLayoutY(),c7.getLayoutY(),c8.getLayoutY(),c9.getLayoutY(),c10.getLayoutY(),c11.getLayoutY(),
                 c12.getLayoutY()};
 
+        //max amount of vertices
         int n = 12;
 
+        //prints area into app
         areaLabel.setText("Total Area: " +polygonArea(X,Y,n)*0.0264583333*0.0264583333+"cm²");
-
 
         //calculating vector magnitudes using distance formula
         double line1 = 0.0264583333 * Math.sqrt(Math.pow((c1.getLayoutX()-c2.getLayoutX()),2)+Math.pow(c1.getLayoutY()-c2.getLayoutY(),2));
@@ -635,13 +663,14 @@ public class Main extends Application{
         double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX()-c1.getLayoutX()),2)+Math.pow(c12.getLayoutY()-c1.getLayoutY(),2));
         DistanceL12.setText("Line 12 Distance: " + line12 + "cm");
 
+        //makes sure that nodes are appended to group only one time
         if(created == false){
             g.getChildren().addAll(L1Identity,L2Identity,L3Identity,L4Identity,L5Identity,L6Identity,L7Identity,L8Identity,L9Identity,
                     L10Identity,L11Identity,L12Identity);
         }
         created = true;
 
-
+        //appending line labels to group and styling them
         L1Identity.setLayoutX((c1.getLayoutX()+c2.getLayoutX())/2);
         L1Identity.setLayoutY((c1.getLayoutY()+c2.getLayoutY())/2);
         L1Identity.setTextFill(Color.RED);
@@ -775,7 +804,7 @@ public class Main extends Application{
 
     }
 
-
+    //function for extracting mouse click coordinates and debugging
     public void print(MouseEvent e) {
         //extracts information from mouse click (identified as "e")
         String type = e.getEventType().getName();
@@ -785,13 +814,8 @@ public class Main extends Application{
         //gets coordinate of the mouse click relative to the event source
         x = e.getX();
         y = e.getY();
-        //System.out.println("Type=" + type + ", Target=" + target + ", Source=" + source + ", location(" + x + ", " + y + ")");
 
-        //runs handleCalculations with every plot point as a parameter
-
-        /*
-        handleCalculations(c1,c2,c3);
-        */
+        //prints click information
          System.out.println("type: "+type+" source: "+source+" target: "+target+" location: "+x+","+y);
 
     }
