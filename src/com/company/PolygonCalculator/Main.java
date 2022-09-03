@@ -612,59 +612,62 @@ public class Main extends Application{
     public void handleCalculations(ActionEvent event){
 
         //places all x and y points into a separate array for the area function to use
-        double X[] = {c1.getLayoutX(),c2.getLayoutX(),c3.getLayoutX(),c4.getLayoutX(),c5.getLayoutX(),
+        double[] X = {c1.getLayoutX(),c2.getLayoutX(),c3.getLayoutX(),c4.getLayoutX(),c5.getLayoutX(),
                 c6.getLayoutX(),c7.getLayoutX(),c8.getLayoutX(),c9.getLayoutX(),c10.getLayoutX(),c11.getLayoutX(),
                 c12.getLayoutX()};
 
-        double Y[] = {c1.getLayoutY(),c2.getLayoutY(),c3.getLayoutY(),c4.getLayoutY(),c5.getLayoutY(),
+        double[] Y = {c1.getLayoutY(),c2.getLayoutY(),c3.getLayoutY(),c4.getLayoutY(),c5.getLayoutY(),
                 c6.getLayoutY(),c7.getLayoutY(),c8.getLayoutY(),c9.getLayoutY(),c10.getLayoutY(),c11.getLayoutY(),
                 c12.getLayoutY()};
 
         //max amount of vertices
         int n = 12;
 
+        //truncating factor
+        int sigFigs = 10;
+
         //prints area into app
         areaLabel.setText("Total Area: " +polygonArea(X,Y,n)*0.0264583333*0.0264583333+"cm²");
 
         //calculating vector magnitudes using distance formula
         double line1 = 0.0264583333 * Math.sqrt(Math.pow((c1.getLayoutX()-c2.getLayoutX()),2)+Math.pow(c1.getLayoutY()-c2.getLayoutY(),2));
-        DistanceL1.setText("Line 1 Distance: " + line1 + "cm");
+        DistanceL1.setText("Line 1 Distance: " + String.format("%.0"+sigFigs+"f",line1) + "cm");
 
         double line2 = 0.0264583333 * Math.sqrt(Math.pow((c2.getLayoutX()-c3.getLayoutX()),2)+Math.pow(c2.getLayoutY()-c3.getLayoutY(),2));
-        DistanceL2.setText("Line 2 Distance: " + line2 + "cm");
+        DistanceL2.setText("Line 2 Distance: " + String.format("%.0"+sigFigs+"f",line2) + "cm");
 
         double line3 = 0.0264583333 * Math.sqrt(Math.pow((c3.getLayoutX()-c4.getLayoutX()),2)+Math.pow(c3.getLayoutY()-c4.getLayoutY(),2));
-        DistanceL3.setText("Line 3 Distance: " + line3 + "cm");
+        DistanceL3.setText("Line 3 Distance: " + String.format("%.0"+sigFigs+"f",line3) + "cm");
 
         double line4 = 0.0264583333 * Math.sqrt(Math.pow((c4.getLayoutX()-c5.getLayoutX()),2)+Math.pow(c4.getLayoutY()-c5.getLayoutY(),2));
-        DistanceL4.setText("Line 4 Distance: " + line4 + "cm");
+        DistanceL4.setText("Line 4 Distance: " + String.format("%.0"+sigFigs+"f",line4) + "cm");
 
         double line5 = 0.0264583333 * Math.sqrt(Math.pow((c5.getLayoutX()-c6.getLayoutX()),2)+Math.pow(c5.getLayoutY()-c6.getLayoutY(),2));
-        DistanceL5.setText("Line 5 Distance: " + line5 + "cm");
+        DistanceL5.setText("Line 5 Distance: " + String.format("%.0"+sigFigs+"f",line5) + "cm");
 
         double line6 = 0.0264583333 * Math.sqrt(Math.pow((c6.getLayoutX()-c7.getLayoutX()),2)+Math.pow(c6.getLayoutY()-c7.getLayoutY(),2));
-        DistanceL6.setText("Line 6 Distance: " + line6 + "cm");
+        DistanceL6.setText("Line 6 Distance: " + String.format("%.0"+sigFigs+"f",line6) + "cm");
 
         double line7 = 0.0264583333 * Math.sqrt(Math.pow((c7.getLayoutX()-c8.getLayoutX()),2)+Math.pow(c7.getLayoutY()-c8.getLayoutY(),2));
-        DistanceL7.setText("Line 7 Distance: " + line7 + "cm");
+        DistanceL7.setText("Line 7 Distance: " + String.format("%.0"+sigFigs+"f",line7) + "cm");
 
         double line8 = 0.0264583333 * Math.sqrt(Math.pow((c8.getLayoutX()-c9.getLayoutX()),2)+Math.pow(c8.getLayoutY()-c9.getLayoutY(),2));
-        DistanceL8.setText("Line 8 Distance: " + line8 + "cm");
+        DistanceL8.setText("Line 8 Distance: " + String.format("%.0"+sigFigs+"f",line8) + "cm");
 
         double line9 = 0.0264583333 * Math.sqrt(Math.pow((c9.getLayoutX()-c10.getLayoutX()),2)+Math.pow(c9.getLayoutY()-c10.getLayoutY(),2));
-        DistanceL9.setText("Line 9 Distance: " + line9 + "cm");
+        DistanceL9.setText("Line 9 Distance: " + String.format("%.0"+sigFigs+"f",line9) + "cm");
 
         double line10 = 0.0264583333 * Math.sqrt(Math.pow((c10.getLayoutX()-c11.getLayoutX()),2)+Math.pow(c10.getLayoutY()-c11.getLayoutY(),2));
-        DistanceL10.setText("Line 10 Distance: " + line10 + "cm");
+        DistanceL10.setText("Line 10 Distance: " + String.format("%.0"+sigFigs+"f",line10) + "cm");
 
         double line11 = 0.0264583333 * Math.sqrt(Math.pow((c11.getLayoutX()-c12.getLayoutX()),2)+Math.pow(c11.getLayoutY()-c12.getLayoutY(),2));
-        DistanceL11.setText("Line 11 Distance: " + line11 + "cm");
+        DistanceL11.setText("Line 11 Distance: " + String.format("%.0"+sigFigs+"f",line11) + "cm");
 
         double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX()-c1.getLayoutX()),2)+Math.pow(c12.getLayoutY()-c1.getLayoutY(),2));
-        DistanceL12.setText("Line 12 Distance: " + line12 + "cm");
+        DistanceL12.setText("Line 12 Distance: " + String.format("%.0"+sigFigs+"f",line12) + "cm");
 
         //makes sure that nodes are appended to group only one time
-        if(created == false){
+        if(!created){
             g.getChildren().addAll(L1Identity,L2Identity,L3Identity,L4Identity,L5Identity,L6Identity,L7Identity,L8Identity,L9Identity,
                     L10Identity,L11Identity,L12Identity);
         }
@@ -784,22 +787,7 @@ public class Main extends Application{
             c12c1.setEndY(c1.getLayoutY());
         }
 
-        /*
-        redToGreen.setStartX(c1.getLayoutX());
-        redToGreen.setStartY(c1.getLayoutY());
-        redToGreen.setEndX(c2.getLayoutX());
-        redToGreen.setEndY(c2.getLayoutY());
 
-        greenToBlue.setStartX(c2.getLayoutX());
-        greenToBlue.setStartY(c2.getLayoutY());
-        greenToBlue.setEndX(c3.getLayoutX());
-        greenToBlue.setEndY(c3.getLayoutY());
-
-        blueToRed.setStartX(c3.getLayoutX());
-        blueToRed.setStartY(c3.getLayoutY());
-        blueToRed.setEndX(c1.getLayoutX());
-        blueToRed.setEndY(c1.getLayoutY());
-         */
 
 
     }
