@@ -63,6 +63,7 @@ public class Main extends Application{
     Button submit = new Button("Submit");
     Button clear = new Button("Clear");
     Button startCalculation = new Button("Calculate");
+    Button toggleSnap = new Button("Enable Snap?");
 
     //created 12 text fields for manual coordinate input
     TextField c1Field = new TextField();
@@ -279,6 +280,8 @@ public class Main extends Application{
         clear.setLayoutY(215);
         startCalculation.setLayoutX(650);
         startCalculation.setLayoutY(215);
+        toggleSnap.setLayoutX(650);
+        toggleSnap.setLayoutY(230);
 
 
         //appending buttons to click listener adapter functions
@@ -291,7 +294,7 @@ public class Main extends Application{
         g.getChildren().addAll(
                 startCalculation,areaLabel,DistanceL1,DistanceL2,DistanceL3,DistanceL4,DistanceL5,
                 DistanceL6,DistanceL7,DistanceL8,DistanceL9,DistanceL10,DistanceL11,DistanceL12,identifier,
-                submit,clear,c1Field,c2Field,c3Field,c4Field,c5Field,c6Field,c7Field,c8Field,c9Field,
+                submit,clear,toggleSnap,c1Field,c2Field,c3Field,c4Field,c5Field,c6Field,c7Field,c8Field,c9Field,
                 c10Field,c11Field,c12Field,c1c2,c2c3,c3c4,c4c5,c5c6,c6c7,c7c8,c8c9,c9c10,c10c11,c11c12,c12c1);
     }
 
@@ -500,6 +503,7 @@ public class Main extends Application{
         print(e);
         click++;
 
+
         //switch that makes sure every point is plotted once and locked into position
         switch (click){
             case 1:
@@ -673,56 +677,7 @@ public class Main extends Application{
         }
         created = true;
 
-        //appending line labels to group and styling them
-        L1Identity.setLayoutX((c1.getLayoutX()+c2.getLayoutX())/2);
-        L1Identity.setLayoutY((c1.getLayoutY()+c2.getLayoutY())/2);
-        L1Identity.setTextFill(Color.RED);
-
-        L2Identity.setLayoutX((c2.getLayoutX()+c3.getLayoutX())/2);
-        L2Identity.setLayoutY((c2.getLayoutY()+c3.getLayoutY())/2);
-        L2Identity.setTextFill(Color.RED);
-
-        L3Identity.setLayoutX((c3.getLayoutX()+c4.getLayoutX())/2);
-        L3Identity.setLayoutY((c3.getLayoutY()+c4.getLayoutY())/2);
-        L3Identity.setTextFill(Color.RED);
-
-        L4Identity.setLayoutX((c4.getLayoutX()+c5.getLayoutX())/2);
-        L4Identity.setLayoutY((c4.getLayoutY()+c5.getLayoutY())/2);
-        L4Identity.setTextFill(Color.RED);
-
-        L5Identity.setLayoutX((c5.getLayoutX()+c6.getLayoutX())/2);
-        L5Identity.setLayoutY((c5.getLayoutY()+c6.getLayoutY())/2);
-        L5Identity.setTextFill(Color.RED);
-
-        L6Identity.setLayoutX((c6.getLayoutX()+c7.getLayoutX())/2);
-        L6Identity.setLayoutY((c6.getLayoutY()+c7.getLayoutY())/2);
-        L6Identity.setTextFill(Color.RED);
-
-        L7Identity.setLayoutX((c7.getLayoutX()+c8.getLayoutX())/2);
-        L7Identity.setLayoutY((c7.getLayoutY()+c8.getLayoutY())/2);
-        L7Identity.setTextFill(Color.RED);
-
-        L8Identity.setLayoutX((c8.getLayoutX()+c9.getLayoutX())/2);
-        L8Identity.setLayoutY((c8.getLayoutY()+c9.getLayoutY())/2);
-        L8Identity.setTextFill(Color.RED);
-
-        L9Identity.setLayoutX((c9.getLayoutX()+c10.getLayoutX())/2);
-        L9Identity.setLayoutY((c9.getLayoutY()+c10.getLayoutY())/2);
-        L9Identity.setTextFill(Color.RED);
-
-        L10Identity.setLayoutX((c10.getLayoutX()+c11.getLayoutX())/2);
-        L10Identity.setLayoutY((c10.getLayoutY()+c11.getLayoutY())/2);
-        L10Identity.setTextFill(Color.RED);
-
-        L11Identity.setLayoutX((c11.getLayoutX()+c12.getLayoutX())/2);
-        L11Identity.setLayoutY((c11.getLayoutY()+c12.getLayoutY())/2);
-        L11Identity.setTextFill(Color.RED);
-
-        L12Identity.setLayoutX((c12.getLayoutX()+c1.getLayoutX())/2);
-        L12Identity.setLayoutY((c12.getLayoutY()+c1.getLayoutY())/2);
-        L12Identity.setTextFill(Color.RED);
-
-
+        appendLabels();
 
         //vector plotting
         {
@@ -788,8 +743,56 @@ public class Main extends Application{
         }
 
 
+    }
+    public void appendLabels() {
+        //appending line labels to group and styling them
+        L1Identity.setLayoutX((c1.getLayoutX()+c2.getLayoutX())/2);
+        L1Identity.setLayoutY((c1.getLayoutY()+c2.getLayoutY())/2);
+        L1Identity.setTextFill(Color.RED);
 
+        L2Identity.setLayoutX((c2.getLayoutX()+c3.getLayoutX())/2);
+        L2Identity.setLayoutY((c2.getLayoutY()+c3.getLayoutY())/2);
+        L2Identity.setTextFill(Color.RED);
 
+        L3Identity.setLayoutX((c3.getLayoutX()+c4.getLayoutX())/2);
+        L3Identity.setLayoutY((c3.getLayoutY()+c4.getLayoutY())/2);
+        L3Identity.setTextFill(Color.RED);
+
+        L4Identity.setLayoutX((c4.getLayoutX()+c5.getLayoutX())/2);
+        L4Identity.setLayoutY((c4.getLayoutY()+c5.getLayoutY())/2);
+        L4Identity.setTextFill(Color.RED);
+
+        L5Identity.setLayoutX((c5.getLayoutX()+c6.getLayoutX())/2);
+        L5Identity.setLayoutY((c5.getLayoutY()+c6.getLayoutY())/2);
+        L5Identity.setTextFill(Color.RED);
+
+        L6Identity.setLayoutX((c6.getLayoutX()+c7.getLayoutX())/2);
+        L6Identity.setLayoutY((c6.getLayoutY()+c7.getLayoutY())/2);
+        L6Identity.setTextFill(Color.RED);
+
+        L7Identity.setLayoutX((c7.getLayoutX()+c8.getLayoutX())/2);
+        L7Identity.setLayoutY((c7.getLayoutY()+c8.getLayoutY())/2);
+        L7Identity.setTextFill(Color.RED);
+
+        L8Identity.setLayoutX((c8.getLayoutX()+c9.getLayoutX())/2);
+        L8Identity.setLayoutY((c8.getLayoutY()+c9.getLayoutY())/2);
+        L8Identity.setTextFill(Color.RED);
+
+        L9Identity.setLayoutX((c9.getLayoutX()+c10.getLayoutX())/2);
+        L9Identity.setLayoutY((c9.getLayoutY()+c10.getLayoutY())/2);
+        L9Identity.setTextFill(Color.RED);
+
+        L10Identity.setLayoutX((c10.getLayoutX()+c11.getLayoutX())/2);
+        L10Identity.setLayoutY((c10.getLayoutY()+c11.getLayoutY())/2);
+        L10Identity.setTextFill(Color.RED);
+
+        L11Identity.setLayoutX((c11.getLayoutX()+c12.getLayoutX())/2);
+        L11Identity.setLayoutY((c11.getLayoutY()+c12.getLayoutY())/2);
+        L11Identity.setTextFill(Color.RED);
+
+        L12Identity.setLayoutX((c12.getLayoutX()+c1.getLayoutX())/2);
+        L12Identity.setLayoutY((c12.getLayoutY()+c1.getLayoutY())/2);
+        L12Identity.setTextFill(Color.RED);
     }
 
     //function for extracting mouse click coordinates and debugging
