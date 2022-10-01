@@ -1,6 +1,7 @@
 package com.company.PolygonCalculator;
 
 //import wastelands
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class Main extends Application {
 
     //mouse click coordinates
     double x;
@@ -46,18 +47,18 @@ public class Main extends Application{
 
     //generated circles with coordinates and radius
     int r = 5;
-    Circle c1 = new Circle(x,y,r);
-    Circle c2 = new Circle(x,y,r);
-    Circle c3 = new Circle(x,y,r);
-    Circle c4 = new Circle(x,y,r);
-    Circle c5 = new Circle(x,y,r);
-    Circle c6 = new Circle(x,y,r);
-    Circle c7 = new Circle(x,y,r);
-    Circle c8 = new Circle(x,y,r);
-    Circle c9 = new Circle(x,y,r);
-    Circle c10 = new Circle(x,y,r);
-    Circle c11 = new Circle(x,y,r);
-    Circle c12 = new Circle(x,y,r);
+    Circle c1 = new Circle(x, y, r);
+    Circle c2 = new Circle(x, y, r);
+    Circle c3 = new Circle(x, y, r);
+    Circle c4 = new Circle(x, y, r);
+    Circle c5 = new Circle(x, y, r);
+    Circle c6 = new Circle(x, y, r);
+    Circle c7 = new Circle(x, y, r);
+    Circle c8 = new Circle(x, y, r);
+    Circle c9 = new Circle(x, y, r);
+    Circle c10 = new Circle(x, y, r);
+    Circle c11 = new Circle(x, y, r);
+    Circle c12 = new Circle(x, y, r);
 
     //created buttons
     Label identifier = new Label("Specific Coordinates: ");
@@ -118,7 +119,7 @@ public class Main extends Application{
     }
 
     //initializing program
-    public void start(Stage stage){
+    public void start(Stage stage) {
         //scene styling and initialization
         Scene scene = new Scene(g, 800, 600);
         stage.setScene(scene);
@@ -127,8 +128,8 @@ public class Main extends Application{
         stage.setResizable(true);
         stage.show();
 
-        //associating e to lambda function using mouse click event
-        EventHandler<MouseEvent> handler = e -> handleEvent(e);
+        //associating e to function using mouse click event
+        EventHandler<MouseEvent> handler = this::handleEvent;
 
 
         //attaching click handlers for stage and scene
@@ -137,7 +138,7 @@ public class Main extends Application{
 
 
         //styling area label
-        areaLabel.setFont(Font.font(null, FontWeight.BOLD,20));
+        areaLabel.setFont(Font.font(null, FontWeight.BOLD, 20));
         areaLabel.setLayoutX(10);
         areaLabel.setLayoutY(15);
 
@@ -296,24 +297,24 @@ public class Main extends Application{
 
         //appending all nodes to group
         g.getChildren().addAll(
-                startCalculation,areaLabel,DistanceL1,DistanceL2,DistanceL3,DistanceL4,DistanceL5,
-                DistanceL6,DistanceL7,DistanceL8,DistanceL9,DistanceL10,DistanceL11,DistanceL12,identifier,
-                submit,clear,toggleSnap,c1Field,c2Field,c3Field,c4Field,c5Field,c6Field,c7Field,c8Field,c9Field,
-                c10Field,c11Field,c12Field,c1c2,c2c3,c3c4,c4c5,c5c6,c6c7,c7c8,c8c9,c9c10,c10c11,c11c12,c12c1);
+                startCalculation, areaLabel, DistanceL1, DistanceL2, DistanceL3, DistanceL4, DistanceL5,
+                DistanceL6, DistanceL7, DistanceL8, DistanceL9, DistanceL10, DistanceL11, DistanceL12, identifier,
+                submit, clear, toggleSnap, c1Field, c2Field, c3Field, c4Field, c5Field, c6Field, c7Field, c8Field, c9Field,
+                c10Field, c11Field, c12Field, c1c2, c2c3, c3c4, c4c5, c5c6, c6c7, c7c8, c8c9, c9c10, c10c11, c11c12, c12c1);
     }
 
     //boolean variable to make sure nodes are generated only once
     boolean created = false;
 
     //function for when submit button is clicked
-    public void handleSubmitAction(ActionEvent event){
+    public void handleSubmitAction(ActionEvent event) {
 
         //check if all fields have characters to be retrieved
-        try{
+        try {
             if (!c1Field.getText().isEmpty() && !c2Field.getText().isEmpty() && !c3Field.getText().isEmpty()
-            && !c4Field.getText().isEmpty() && !c5Field.getText().isEmpty() && !c6Field.getText().isEmpty()
-            && !c7Field.getText().isEmpty() && !c8Field.getText().isEmpty() && !c9Field.getText().isEmpty()
-            && !c10Field.getText().isEmpty() && !c11Field.getText().isEmpty() && !c12Field.getText().isEmpty()) {
+                    && !c4Field.getText().isEmpty() && !c5Field.getText().isEmpty() && !c6Field.getText().isEmpty()
+                    && !c7Field.getText().isEmpty() && !c8Field.getText().isEmpty() && !c9Field.getText().isEmpty()
+                    && !c10Field.getText().isEmpty() && !c11Field.getText().isEmpty() && !c12Field.getText().isEmpty()) {
 
                 identifier.setText("Specific Coordinates: (Parsed)");
 
@@ -454,12 +455,12 @@ public class Main extends Application{
                 c12.setLayoutX(c12.getLayoutX());
                 c12.setLayoutY(c12.getLayoutY());
             }
-        } catch (Exception p){
+        } catch (Exception p) {
             identifier.setText("Specific Coordinates: (Error!)");
         }
     }
 
-    public void handleClearAction(ActionEvent event){
+    public void handleClearAction(ActionEvent event) {
         //clears all fields
         c1Field.clear();
         c2Field.clear();
@@ -496,9 +497,8 @@ public class Main extends Application{
 
         //image generation
         Image image = canvas.snapshot(new SnapshotParameters(), null);
-        ImagePattern pattern = new ImagePattern(image, 0, 0, w, h, false);
 
-        return pattern;
+        return new ImagePattern(image, 0, 0, w, h, false);
 
     }
 
@@ -506,7 +506,7 @@ public class Main extends Application{
 
     public void handleToggleSnap(ActionEvent event) {
         snapEnabled = !snapEnabled;
-        if(snapEnabled) {
+        if (snapEnabled) {
             toggleSnap.setStyle("-fx-background-color: #00ff00");
             toggleSnap.setText("Snap On");
         } else {
@@ -514,23 +514,26 @@ public class Main extends Application{
             toggleSnap.setStyle("-fx-background-color: #ff0000");
         }
     }
-    public double parseXSnapCoords(){
-        return Math.round(x/20)*20;
+
+    public double parseXSnapCoords() {
+        return Math.round(x / 20) * 20;
     }
-    public double parseYSnapCoords(){
-        return Math.round(y/20)*20;
+
+    public double parseYSnapCoords() {
+        return Math.round(y / 20) * 20;
     }
 
     //setting public click counter to identify if points have been plotted
     int click = 0;
+
     public void handleEvent(MouseEvent e) {
         print(e);
         click++;
 
         //switch that makes sure every point is plotted once and locked into position
-        switch (click){
+        switch (click) {
             case 1:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c1.setLayoutX(parseXSnapCoords());
                     c1.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c1);
@@ -541,7 +544,7 @@ public class Main extends Application{
                 }
                 break;
             case 3:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c2.setLayoutX(parseXSnapCoords());
                     c2.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c2);
@@ -552,7 +555,7 @@ public class Main extends Application{
                 }
                 break;
             case 5:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c3.setLayoutX(parseXSnapCoords());
                     c3.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c3);
@@ -563,7 +566,7 @@ public class Main extends Application{
                 }
                 break;
             case 7:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c4.setLayoutX(parseXSnapCoords());
                     c4.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c4);
@@ -574,7 +577,7 @@ public class Main extends Application{
                 }
                 break;
             case 9:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c5.setLayoutX(parseXSnapCoords());
                     c5.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c5);
@@ -585,7 +588,7 @@ public class Main extends Application{
                 }
                 break;
             case 11:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c6.setLayoutX(parseXSnapCoords());
                     c6.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c6);
@@ -596,7 +599,7 @@ public class Main extends Application{
                 }
                 break;
             case 13:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c7.setLayoutX(parseXSnapCoords());
                     c7.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c7);
@@ -607,7 +610,7 @@ public class Main extends Application{
                 }
                 break;
             case 15:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c8.setLayoutX(parseXSnapCoords());
                     c8.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c8);
@@ -618,7 +621,7 @@ public class Main extends Application{
                 }
                 break;
             case 17:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c9.setLayoutX(parseXSnapCoords());
                     c9.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c9);
@@ -629,7 +632,7 @@ public class Main extends Application{
                 }
                 break;
             case 19:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c10.setLayoutX(parseXSnapCoords());
                     c10.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c10);
@@ -640,7 +643,7 @@ public class Main extends Application{
                 }
                 break;
             case 21:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c11.setLayoutX(parseXSnapCoords());
                     c11.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c11);
@@ -651,7 +654,7 @@ public class Main extends Application{
                 }
                 break;
             case 23:
-                if(snapEnabled){
+                if (snapEnabled) {
                     c12.setLayoutX(parseXSnapCoords());
                     c12.setLayoutY(parseYSnapCoords());
                     g.getChildren().add(c12);
@@ -665,7 +668,7 @@ public class Main extends Application{
     }
 
     //calculates area of polygon
-    public static double polygonArea(double X[], double Y[], int n) {
+    public static double polygonArea(double[] X, double[] Y, int n) {
         double area = 0.0;
 
         //calculate area using shoelace formula
@@ -682,15 +685,15 @@ public class Main extends Application{
     }
 
     //runs whenever calculate button is pressed
-    public void handleCalculations(ActionEvent event){
+    public void handleCalculations(ActionEvent event) {
 
         //places all x and y points into a separate array for the area function to use
-        double[] X = {c1.getLayoutX(),c2.getLayoutX(),c3.getLayoutX(),c4.getLayoutX(),c5.getLayoutX(),
-                c6.getLayoutX(),c7.getLayoutX(),c8.getLayoutX(),c9.getLayoutX(),c10.getLayoutX(),c11.getLayoutX(),
+        double[] X = {c1.getLayoutX(), c2.getLayoutX(), c3.getLayoutX(), c4.getLayoutX(), c5.getLayoutX(),
+                c6.getLayoutX(), c7.getLayoutX(), c8.getLayoutX(), c9.getLayoutX(), c10.getLayoutX(), c11.getLayoutX(),
                 c12.getLayoutX()};
 
-        double[] Y = {c1.getLayoutY(),c2.getLayoutY(),c3.getLayoutY(),c4.getLayoutY(),c5.getLayoutY(),
-                c6.getLayoutY(),c7.getLayoutY(),c8.getLayoutY(),c9.getLayoutY(),c10.getLayoutY(),c11.getLayoutY(),
+        double[] Y = {c1.getLayoutY(), c2.getLayoutY(), c3.getLayoutY(), c4.getLayoutY(), c5.getLayoutY(),
+                c6.getLayoutY(), c7.getLayoutY(), c8.getLayoutY(), c9.getLayoutY(), c10.getLayoutY(), c11.getLayoutY(),
                 c12.getLayoutY()};
 
         //max amount of vertices
@@ -700,49 +703,49 @@ public class Main extends Application{
         int sigFigs = 10;
 
         //prints area into app
-        areaLabel.setText("Total Area: " +polygonArea(X,Y,n)*0.0264583333*0.0264583333+"cm²");
+        areaLabel.setText("Total Area: " + polygonArea(X, Y, n) * 0.0264583333 * 0.0264583333 + "cm²");
 
         //calculating vector magnitudes using distance formula
-        double line1 = 0.0264583333 * Math.sqrt(Math.pow((c1.getLayoutX()-c2.getLayoutX()),2)+Math.pow(c1.getLayoutY()-c2.getLayoutY(),2));
-        DistanceL1.setText("Line 1 Distance: " + String.format("%.0"+sigFigs+"f",line1) + "cm");
+        double line1 = 0.0264583333 * Math.sqrt(Math.pow((c1.getLayoutX() - c2.getLayoutX()), 2) + Math.pow(c1.getLayoutY() - c2.getLayoutY(), 2));
+        DistanceL1.setText("Line 1 Distance: " + String.format("%.0" + sigFigs + "f", line1) + "cm");
 
-        double line2 = 0.0264583333 * Math.sqrt(Math.pow((c2.getLayoutX()-c3.getLayoutX()),2)+Math.pow(c2.getLayoutY()-c3.getLayoutY(),2));
-        DistanceL2.setText("Line 2 Distance: " + String.format("%.0"+sigFigs+"f",line2) + "cm");
+        double line2 = 0.0264583333 * Math.sqrt(Math.pow((c2.getLayoutX() - c3.getLayoutX()), 2) + Math.pow(c2.getLayoutY() - c3.getLayoutY(), 2));
+        DistanceL2.setText("Line 2 Distance: " + String.format("%.0" + sigFigs + "f", line2) + "cm");
 
-        double line3 = 0.0264583333 * Math.sqrt(Math.pow((c3.getLayoutX()-c4.getLayoutX()),2)+Math.pow(c3.getLayoutY()-c4.getLayoutY(),2));
-        DistanceL3.setText("Line 3 Distance: " + String.format("%.0"+sigFigs+"f",line3) + "cm");
+        double line3 = 0.0264583333 * Math.sqrt(Math.pow((c3.getLayoutX() - c4.getLayoutX()), 2) + Math.pow(c3.getLayoutY() - c4.getLayoutY(), 2));
+        DistanceL3.setText("Line 3 Distance: " + String.format("%.0" + sigFigs + "f", line3) + "cm");
 
-        double line4 = 0.0264583333 * Math.sqrt(Math.pow((c4.getLayoutX()-c5.getLayoutX()),2)+Math.pow(c4.getLayoutY()-c5.getLayoutY(),2));
-        DistanceL4.setText("Line 4 Distance: " + String.format("%.0"+sigFigs+"f",line4) + "cm");
+        double line4 = 0.0264583333 * Math.sqrt(Math.pow((c4.getLayoutX() - c5.getLayoutX()), 2) + Math.pow(c4.getLayoutY() - c5.getLayoutY(), 2));
+        DistanceL4.setText("Line 4 Distance: " + String.format("%.0" + sigFigs + "f", line4) + "cm");
 
-        double line5 = 0.0264583333 * Math.sqrt(Math.pow((c5.getLayoutX()-c6.getLayoutX()),2)+Math.pow(c5.getLayoutY()-c6.getLayoutY(),2));
-        DistanceL5.setText("Line 5 Distance: " + String.format("%.0"+sigFigs+"f",line5) + "cm");
+        double line5 = 0.0264583333 * Math.sqrt(Math.pow((c5.getLayoutX() - c6.getLayoutX()), 2) + Math.pow(c5.getLayoutY() - c6.getLayoutY(), 2));
+        DistanceL5.setText("Line 5 Distance: " + String.format("%.0" + sigFigs + "f", line5) + "cm");
 
-        double line6 = 0.0264583333 * Math.sqrt(Math.pow((c6.getLayoutX()-c7.getLayoutX()),2)+Math.pow(c6.getLayoutY()-c7.getLayoutY(),2));
-        DistanceL6.setText("Line 6 Distance: " + String.format("%.0"+sigFigs+"f",line6) + "cm");
+        double line6 = 0.0264583333 * Math.sqrt(Math.pow((c6.getLayoutX() - c7.getLayoutX()), 2) + Math.pow(c6.getLayoutY() - c7.getLayoutY(), 2));
+        DistanceL6.setText("Line 6 Distance: " + String.format("%.0" + sigFigs + "f", line6) + "cm");
 
-        double line7 = 0.0264583333 * Math.sqrt(Math.pow((c7.getLayoutX()-c8.getLayoutX()),2)+Math.pow(c7.getLayoutY()-c8.getLayoutY(),2));
-        DistanceL7.setText("Line 7 Distance: " + String.format("%.0"+sigFigs+"f",line7) + "cm");
+        double line7 = 0.0264583333 * Math.sqrt(Math.pow((c7.getLayoutX() - c8.getLayoutX()), 2) + Math.pow(c7.getLayoutY() - c8.getLayoutY(), 2));
+        DistanceL7.setText("Line 7 Distance: " + String.format("%.0" + sigFigs + "f", line7) + "cm");
 
-        double line8 = 0.0264583333 * Math.sqrt(Math.pow((c8.getLayoutX()-c9.getLayoutX()),2)+Math.pow(c8.getLayoutY()-c9.getLayoutY(),2));
-        DistanceL8.setText("Line 8 Distance: " + String.format("%.0"+sigFigs+"f",line8) + "cm");
+        double line8 = 0.0264583333 * Math.sqrt(Math.pow((c8.getLayoutX() - c9.getLayoutX()), 2) + Math.pow(c8.getLayoutY() - c9.getLayoutY(), 2));
+        DistanceL8.setText("Line 8 Distance: " + String.format("%.0" + sigFigs + "f", line8) + "cm");
 
-        double line9 = 0.0264583333 * Math.sqrt(Math.pow((c9.getLayoutX()-c10.getLayoutX()),2)+Math.pow(c9.getLayoutY()-c10.getLayoutY(),2));
-        DistanceL9.setText("Line 9 Distance: " + String.format("%.0"+sigFigs+"f",line9) + "cm");
+        double line9 = 0.0264583333 * Math.sqrt(Math.pow((c9.getLayoutX() - c10.getLayoutX()), 2) + Math.pow(c9.getLayoutY() - c10.getLayoutY(), 2));
+        DistanceL9.setText("Line 9 Distance: " + String.format("%.0" + sigFigs + "f", line9) + "cm");
 
-        double line10 = 0.0264583333 * Math.sqrt(Math.pow((c10.getLayoutX()-c11.getLayoutX()),2)+Math.pow(c10.getLayoutY()-c11.getLayoutY(),2));
-        DistanceL10.setText("Line 10 Distance: " + String.format("%.0"+sigFigs+"f",line10) + "cm");
+        double line10 = 0.0264583333 * Math.sqrt(Math.pow((c10.getLayoutX() - c11.getLayoutX()), 2) + Math.pow(c10.getLayoutY() - c11.getLayoutY(), 2));
+        DistanceL10.setText("Line 10 Distance: " + String.format("%.0" + sigFigs + "f", line10) + "cm");
 
-        double line11 = 0.0264583333 * Math.sqrt(Math.pow((c11.getLayoutX()-c12.getLayoutX()),2)+Math.pow(c11.getLayoutY()-c12.getLayoutY(),2));
-        DistanceL11.setText("Line 11 Distance: " + String.format("%.0"+sigFigs+"f",line11) + "cm");
+        double line11 = 0.0264583333 * Math.sqrt(Math.pow((c11.getLayoutX() - c12.getLayoutX()), 2) + Math.pow(c11.getLayoutY() - c12.getLayoutY(), 2));
+        DistanceL11.setText("Line 11 Distance: " + String.format("%.0" + sigFigs + "f", line11) + "cm");
 
-        double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX()-c1.getLayoutX()),2)+Math.pow(c12.getLayoutY()-c1.getLayoutY(),2));
-        DistanceL12.setText("Line 12 Distance: " + String.format("%.0"+sigFigs+"f",line12) + "cm");
+        double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX() - c1.getLayoutX()), 2) + Math.pow(c12.getLayoutY() - c1.getLayoutY(), 2));
+        DistanceL12.setText("Line 12 Distance: " + String.format("%.0" + sigFigs + "f", line12) + "cm");
 
         //makes sure that nodes are appended to group only one time
-        if(!created){
-            g.getChildren().addAll(L1Identity,L2Identity,L3Identity,L4Identity,L5Identity,L6Identity,L7Identity,L8Identity,L9Identity,
-                    L10Identity,L11Identity,L12Identity);
+        if (!created) {
+            g.getChildren().addAll(L1Identity, L2Identity, L3Identity, L4Identity, L5Identity, L6Identity, L7Identity, L8Identity, L9Identity,
+                    L10Identity, L11Identity, L12Identity);
         }
         created = true;
 
@@ -813,54 +816,55 @@ public class Main extends Application{
 
 
     }
+
     public void appendLabels() {
         //appending line labels to group and styling them
-        L1Identity.setLayoutX((c1.getLayoutX()+c2.getLayoutX())/2);
-        L1Identity.setLayoutY((c1.getLayoutY()+c2.getLayoutY())/2);
+        L1Identity.setLayoutX((c1.getLayoutX() + c2.getLayoutX()) / 2);
+        L1Identity.setLayoutY((c1.getLayoutY() + c2.getLayoutY()) / 2);
         L1Identity.setTextFill(Color.RED);
 
-        L2Identity.setLayoutX((c2.getLayoutX()+c3.getLayoutX())/2);
-        L2Identity.setLayoutY((c2.getLayoutY()+c3.getLayoutY())/2);
+        L2Identity.setLayoutX((c2.getLayoutX() + c3.getLayoutX()) / 2);
+        L2Identity.setLayoutY((c2.getLayoutY() + c3.getLayoutY()) / 2);
         L2Identity.setTextFill(Color.RED);
 
-        L3Identity.setLayoutX((c3.getLayoutX()+c4.getLayoutX())/2);
-        L3Identity.setLayoutY((c3.getLayoutY()+c4.getLayoutY())/2);
+        L3Identity.setLayoutX((c3.getLayoutX() + c4.getLayoutX()) / 2);
+        L3Identity.setLayoutY((c3.getLayoutY() + c4.getLayoutY()) / 2);
         L3Identity.setTextFill(Color.RED);
 
-        L4Identity.setLayoutX((c4.getLayoutX()+c5.getLayoutX())/2);
-        L4Identity.setLayoutY((c4.getLayoutY()+c5.getLayoutY())/2);
+        L4Identity.setLayoutX((c4.getLayoutX() + c5.getLayoutX()) / 2);
+        L4Identity.setLayoutY((c4.getLayoutY() + c5.getLayoutY()) / 2);
         L4Identity.setTextFill(Color.RED);
 
-        L5Identity.setLayoutX((c5.getLayoutX()+c6.getLayoutX())/2);
-        L5Identity.setLayoutY((c5.getLayoutY()+c6.getLayoutY())/2);
+        L5Identity.setLayoutX((c5.getLayoutX() + c6.getLayoutX()) / 2);
+        L5Identity.setLayoutY((c5.getLayoutY() + c6.getLayoutY()) / 2);
         L5Identity.setTextFill(Color.RED);
 
-        L6Identity.setLayoutX((c6.getLayoutX()+c7.getLayoutX())/2);
-        L6Identity.setLayoutY((c6.getLayoutY()+c7.getLayoutY())/2);
+        L6Identity.setLayoutX((c6.getLayoutX() + c7.getLayoutX()) / 2);
+        L6Identity.setLayoutY((c6.getLayoutY() + c7.getLayoutY()) / 2);
         L6Identity.setTextFill(Color.RED);
 
-        L7Identity.setLayoutX((c7.getLayoutX()+c8.getLayoutX())/2);
-        L7Identity.setLayoutY((c7.getLayoutY()+c8.getLayoutY())/2);
+        L7Identity.setLayoutX((c7.getLayoutX() + c8.getLayoutX()) / 2);
+        L7Identity.setLayoutY((c7.getLayoutY() + c8.getLayoutY()) / 2);
         L7Identity.setTextFill(Color.RED);
 
-        L8Identity.setLayoutX((c8.getLayoutX()+c9.getLayoutX())/2);
-        L8Identity.setLayoutY((c8.getLayoutY()+c9.getLayoutY())/2);
+        L8Identity.setLayoutX((c8.getLayoutX() + c9.getLayoutX()) / 2);
+        L8Identity.setLayoutY((c8.getLayoutY() + c9.getLayoutY()) / 2);
         L8Identity.setTextFill(Color.RED);
 
-        L9Identity.setLayoutX((c9.getLayoutX()+c10.getLayoutX())/2);
-        L9Identity.setLayoutY((c9.getLayoutY()+c10.getLayoutY())/2);
+        L9Identity.setLayoutX((c9.getLayoutX() + c10.getLayoutX()) / 2);
+        L9Identity.setLayoutY((c9.getLayoutY() + c10.getLayoutY()) / 2);
         L9Identity.setTextFill(Color.RED);
 
-        L10Identity.setLayoutX((c10.getLayoutX()+c11.getLayoutX())/2);
-        L10Identity.setLayoutY((c10.getLayoutY()+c11.getLayoutY())/2);
+        L10Identity.setLayoutX((c10.getLayoutX() + c11.getLayoutX()) / 2);
+        L10Identity.setLayoutY((c10.getLayoutY() + c11.getLayoutY()) / 2);
         L10Identity.setTextFill(Color.RED);
 
-        L11Identity.setLayoutX((c11.getLayoutX()+c12.getLayoutX())/2);
-        L11Identity.setLayoutY((c11.getLayoutY()+c12.getLayoutY())/2);
+        L11Identity.setLayoutX((c11.getLayoutX() + c12.getLayoutX()) / 2);
+        L11Identity.setLayoutY((c11.getLayoutY() + c12.getLayoutY()) / 2);
         L11Identity.setTextFill(Color.RED);
 
-        L12Identity.setLayoutX((c12.getLayoutX()+c1.getLayoutX())/2);
-        L12Identity.setLayoutY((c12.getLayoutY()+c1.getLayoutY())/2);
+        L12Identity.setLayoutX((c12.getLayoutX() + c1.getLayoutX()) / 2);
+        L12Identity.setLayoutY((c12.getLayoutY() + c1.getLayoutY()) / 2);
         L12Identity.setTextFill(Color.RED);
     }
 
@@ -876,7 +880,7 @@ public class Main extends Application{
         y = e.getY();
 
         //prints click information
-         System.out.println("type: "+type+" source: "+source+" target: "+target+" location: "+x+","+y);
+        System.out.println("type: " + type + " source: " + source + " target: " + target + " location: " + x + "," + y);
 
     }
 }
