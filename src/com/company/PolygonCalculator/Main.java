@@ -45,25 +45,26 @@ public class Main extends Application{
     Label DistanceL12 = new Label("Line 12 Distance: ");
 
     //generated circles with coordinates and radius
-    Circle c1 = new Circle(x,y,10);
-    Circle c2 = new Circle(x,y,10);
-    Circle c3 = new Circle(x,y,10);
-    Circle c4 = new Circle(x,y,10);
-    Circle c5 = new Circle(x,y,10);
-    Circle c6 = new Circle(x,y,10);
-    Circle c7 = new Circle(x,y,10);
-    Circle c8 = new Circle(x,y,10);
-    Circle c9 = new Circle(x,y,10);
-    Circle c10 = new Circle(x,y,10);
-    Circle c11 = new Circle(x,y,10);
-    Circle c12 = new Circle(x,y,10);
+    int r = 5;
+    Circle c1 = new Circle(x,y,r);
+    Circle c2 = new Circle(x,y,r);
+    Circle c3 = new Circle(x,y,r);
+    Circle c4 = new Circle(x,y,r);
+    Circle c5 = new Circle(x,y,r);
+    Circle c6 = new Circle(x,y,r);
+    Circle c7 = new Circle(x,y,r);
+    Circle c8 = new Circle(x,y,r);
+    Circle c9 = new Circle(x,y,r);
+    Circle c10 = new Circle(x,y,r);
+    Circle c11 = new Circle(x,y,r);
+    Circle c12 = new Circle(x,y,r);
 
     //created buttons
     Label identifier = new Label("Specific Coordinates: ");
     Button submit = new Button("Submit");
     Button clear = new Button("Clear");
     Button startCalculation = new Button("Calculate");
-    Button toggleSnap = new Button("Enable Snap?");
+    Button toggleSnap = new Button("Snap Off");
 
     //created 12 text fields for manual coordinate input
     TextField c1Field = new TextField();
@@ -280,14 +281,17 @@ public class Main extends Application{
         clear.setLayoutY(215);
         startCalculation.setLayoutX(650);
         startCalculation.setLayoutY(215);
-        toggleSnap.setLayoutX(650);
-        toggleSnap.setLayoutY(230);
+        toggleSnap.setLayoutX(651);
+        toggleSnap.setLayoutY(245);
+
+        toggleSnap.setStyle("-fx-background-color: #ff0000");
 
 
         //appending buttons to click listener adapter functions
         submit.setOnAction(this::handleSubmitAction);
         clear.setOnAction(this::handleClearAction);
         startCalculation.setOnAction(this::handleCalculations);
+        toggleSnap.setOnAction(this::handleToggleSnap);
 
 
         //appending all nodes to group
@@ -454,6 +458,7 @@ public class Main extends Application{
             identifier.setText("Specific Coordinates: (Error!)");
         }
     }
+
     public void handleClearAction(ActionEvent event){
         //clears all fields
         c1Field.clear();
@@ -497,100 +502,164 @@ public class Main extends Application{
 
     }
 
+    boolean snapEnabled = false;
+
+    public void handleToggleSnap(ActionEvent event) {
+        snapEnabled = !snapEnabled;
+        if(snapEnabled) {
+            toggleSnap.setStyle("-fx-background-color: #00ff00");
+            toggleSnap.setText("Snap On");
+        } else {
+            toggleSnap.setText("Snap Off");
+            toggleSnap.setStyle("-fx-background-color: #ff0000");
+        }
+    }
+    public double parseXSnapCoords(){
+        return Math.round(x/20)*20;
+    }
+    public double parseYSnapCoords(){
+        return Math.round(y/20)*20;
+    }
+
     //setting public click counter to identify if points have been plotted
     int click = 0;
     public void handleEvent(MouseEvent e) {
         print(e);
         click++;
 
-
         //switch that makes sure every point is plotted once and locked into position
         switch (click){
             case 1:
-                //creates temp variable using mouse click coordinates
-                final double c1x = x;
-                final double c1y = y;
-                //appends temp coordinates to circle
-                c1.setLayoutX(c1x);
-                c1.setLayoutY(c1y);
-                g.getChildren().add(c1);
+                if(snapEnabled){
+                    c1.setLayoutX(parseXSnapCoords());
+                    c1.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c1);
+                } else {
+                    c1.setLayoutX(x);
+                    c1.setLayoutY(y);
+                    g.getChildren().add(c1);
+                }
                 break;
             case 3:
-                final double c2x = x;
-                final double c2y = y;
-                c2.setLayoutX(c2x);
-                c2.setLayoutY(c2y);
-                g.getChildren().add(c2);
+                if(snapEnabled){
+                    c2.setLayoutX(parseXSnapCoords());
+                    c2.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c2);
+                } else {
+                    c2.setLayoutX(x);
+                    c2.setLayoutY(y);
+                    g.getChildren().add(c2);
+                }
                 break;
             case 5:
-                final double c3x = x;
-                final double c3y = y;
-                c3.setLayoutX(c3x);
-                c3.setLayoutY(c3y);
-                g.getChildren().add(c3);
+                if(snapEnabled){
+                    c3.setLayoutX(parseXSnapCoords());
+                    c3.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c3);
+                } else {
+                    c3.setLayoutX(x);
+                    c3.setLayoutY(y);
+                    g.getChildren().add(c3);
+                }
                 break;
             case 7:
-                final double c4x = x;
-                final double c4y = y;
-                c4.setLayoutX(c4x);
-                c4.setLayoutY(c4y);
-                g.getChildren().add(c4);
+                if(snapEnabled){
+                    c4.setLayoutX(parseXSnapCoords());
+                    c4.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c4);
+                } else {
+                    c4.setLayoutX(x);
+                    c4.setLayoutY(y);
+                    g.getChildren().add(c4);
+                }
                 break;
             case 9:
-                final double c5x = x;
-                final double c5y = y;
-                c5.setLayoutX(c5x);
-                c5.setLayoutY(c5y);
-                g.getChildren().add(c5);
+                if(snapEnabled){
+                    c5.setLayoutX(parseXSnapCoords());
+                    c5.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c5);
+                } else {
+                    c5.setLayoutX(x);
+                    c5.setLayoutY(y);
+                    g.getChildren().add(c5);
+                }
                 break;
             case 11:
-                final double c6x = x;
-                final double c6y = y;
-                c6.setLayoutX(c6x);
-                c6.setLayoutY(c6y);
-                g.getChildren().add(c6);
+                if(snapEnabled){
+                    c6.setLayoutX(parseXSnapCoords());
+                    c6.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c6);
+                } else {
+                    c6.setLayoutX(x);
+                    c6.setLayoutY(y);
+                    g.getChildren().add(c6);
+                }
                 break;
             case 13:
-                final double c7x = x;
-                final double c7y = y;
-                c7.setLayoutX(c7x);
-                c7.setLayoutY(c7y);
-                g.getChildren().add(c7);
+                if(snapEnabled){
+                    c7.setLayoutX(parseXSnapCoords());
+                    c7.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c7);
+                } else {
+                    c7.setLayoutX(x);
+                    c7.setLayoutY(y);
+                    g.getChildren().add(c7);
+                }
                 break;
             case 15:
-                final double c8x = x;
-                final double c8y = y;
-                c8.setLayoutX(c8x);
-                c8.setLayoutY(c8y);
-                g.getChildren().add(c8);
+                if(snapEnabled){
+                    c8.setLayoutX(parseXSnapCoords());
+                    c8.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c8);
+                } else {
+                    c8.setLayoutX(x);
+                    c8.setLayoutY(y);
+                    g.getChildren().add(c8);
+                }
                 break;
             case 17:
-                final double c9x = x;
-                final double c9y = y;
-                c9.setLayoutX(c9x);
-                c9.setLayoutY(c9y);
-                g.getChildren().add(c9);
+                if(snapEnabled){
+                    c9.setLayoutX(parseXSnapCoords());
+                    c9.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c9);
+                } else {
+                    c9.setLayoutX(x);
+                    c9.setLayoutY(y);
+                    g.getChildren().add(c9);
+                }
                 break;
             case 19:
-                final double c10x = x;
-                final double c10y = y;
-                c10.setLayoutX(c10x);
-                c10.setLayoutY(c10y);
-                g.getChildren().add(c10);
+                if(snapEnabled){
+                    c10.setLayoutX(parseXSnapCoords());
+                    c10.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c10);
+                } else {
+                    c10.setLayoutX(x);
+                    c10.setLayoutY(y);
+                    g.getChildren().add(c10);
+                }
                 break;
             case 21:
-                final double c11x = x;
-                final double c11y = y;
-                c11.setLayoutX(c11x);
-                c11.setLayoutY(c11y);
-                g.getChildren().add(c11);
+                if(snapEnabled){
+                    c11.setLayoutX(parseXSnapCoords());
+                    c11.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c11);
+                } else {
+                    c11.setLayoutX(x);
+                    c11.setLayoutY(y);
+                    g.getChildren().add(c11);
+                }
                 break;
             case 23:
-                final double c12x = x;
-                final double c12y = y;
-                c12.setLayoutX(c12x);
-                c12.setLayoutY(c12y);
-                g.getChildren().add(c12);
+                if(snapEnabled){
+                    c12.setLayoutX(parseXSnapCoords());
+                    c12.setLayoutY(parseYSnapCoords());
+                    g.getChildren().add(c12);
+                } else {
+                    c12.setLayoutX(x);
+                    c12.setLayoutY(y);
+                    g.getChildren().add(c12);
+                }
                 break;
         }
     }
