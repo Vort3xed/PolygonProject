@@ -123,7 +123,7 @@ public class Main extends Application {
         //scene styling and initialization
         Scene scene = new Scene(g, 800, 600);
         stage.setScene(scene);
-        stage.setTitle("Triangle Area Calculator");
+        stage.setTitle("Polygon Calculator");
         scene.setFill(createGridPattern());
         stage.setResizable(true);
         stage.show();
