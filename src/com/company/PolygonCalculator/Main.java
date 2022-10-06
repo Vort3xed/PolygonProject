@@ -31,6 +31,7 @@ public class Main extends Application {
 
     //Labels for triangle info
     Label areaLabel = new Label("Total Area: ");
+    Label pointsLeftLabel = new Label("12 Points Remaining");
 
     Label DistanceL1 = new Label("Line 1 Distance: ");
     Label DistanceL2 = new Label("Line 2 Distance: ");
@@ -297,7 +298,7 @@ public class Main extends Application {
 
         //appending all nodes to group
         g.getChildren().addAll(
-                startCalculation, areaLabel, DistanceL1, DistanceL2, DistanceL3, DistanceL4, DistanceL5,
+                startCalculation, areaLabel, pointsLeftLabel, DistanceL1, DistanceL2, DistanceL3, DistanceL4, DistanceL5,
                 DistanceL6, DistanceL7, DistanceL8, DistanceL9, DistanceL10, DistanceL11, DistanceL12, identifier,
                 submit, clear, toggleSnap, c1Field, c2Field, c3Field, c4Field, c5Field, c6Field, c7Field, c8Field, c9Field,
                 c10Field, c11Field, c12Field, c1c2, c2c3, c3c4, c4c5, c5c6, c6c7, c7c8, c8c9, c9c10, c10c11, c11c12, c12c1);
@@ -525,6 +526,7 @@ public class Main extends Application {
 
     //setting public click counter to identify if points have been plotted
     int click = 0;
+    int pointsRemaining = 12;
 
     public void handleEvent(MouseEvent e) {
         print(e);
@@ -542,6 +544,8 @@ public class Main extends Application {
                     c1.setLayoutY(y);
                     g.getChildren().add(c1);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 3:
                 if (snapEnabled) {
@@ -553,6 +557,8 @@ public class Main extends Application {
                     c2.setLayoutY(y);
                     g.getChildren().add(c2);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 5:
                 if (snapEnabled) {
@@ -564,6 +570,8 @@ public class Main extends Application {
                     c3.setLayoutY(y);
                     g.getChildren().add(c3);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 7:
                 if (snapEnabled) {
@@ -575,6 +583,8 @@ public class Main extends Application {
                     c4.setLayoutY(y);
                     g.getChildren().add(c4);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 9:
                 if (snapEnabled) {
@@ -586,6 +596,8 @@ public class Main extends Application {
                     c5.setLayoutY(y);
                     g.getChildren().add(c5);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 11:
                 if (snapEnabled) {
@@ -597,6 +609,8 @@ public class Main extends Application {
                     c6.setLayoutY(y);
                     g.getChildren().add(c6);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 13:
                 if (snapEnabled) {
@@ -608,6 +622,8 @@ public class Main extends Application {
                     c7.setLayoutY(y);
                     g.getChildren().add(c7);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 15:
                 if (snapEnabled) {
@@ -619,6 +635,8 @@ public class Main extends Application {
                     c8.setLayoutY(y);
                     g.getChildren().add(c8);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 17:
                 if (snapEnabled) {
@@ -630,6 +648,8 @@ public class Main extends Application {
                     c9.setLayoutY(y);
                     g.getChildren().add(c9);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 19:
                 if (snapEnabled) {
@@ -641,6 +661,8 @@ public class Main extends Application {
                     c10.setLayoutY(y);
                     g.getChildren().add(c10);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 21:
                 if (snapEnabled) {
@@ -652,6 +674,8 @@ public class Main extends Application {
                     c11.setLayoutY(y);
                     g.getChildren().add(c11);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
             case 23:
                 if (snapEnabled) {
@@ -663,6 +687,8 @@ public class Main extends Application {
                     c12.setLayoutY(y);
                     g.getChildren().add(c12);
                 }
+                pointsRemaining--;
+                pointsLeftLabel.setText(pointsRemaining+" Points Remaining");
                 break;
         }
     }
