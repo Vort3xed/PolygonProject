@@ -143,6 +143,15 @@ public class Main extends Application {
         areaLabel.setLayoutX(10);
         areaLabel.setLayoutY(15);
 
+        //angle label styling
+        identifier.setFont(Font.font(18));
+        identifier.setLayoutX(450);
+        identifier.setLayoutY(5);
+
+        pointsLeftLabel.setFont(Font.font(15));
+        pointsLeftLabel.setLayoutX(450);
+        pointsLeftLabel.setLayoutY(240);
+
         //distance label styling
         {
             DistanceL1.setFont(Font.font(20));
@@ -194,10 +203,6 @@ public class Main extends Application {
             DistanceL12.setLayoutY(255);
         }
 
-        //angle label styling
-        identifier.setFont(Font.font(18));
-        identifier.setLayoutX(450);
-        identifier.setLayoutY(5);
 
         //stylizing and retrieving characters from text fields
         {
