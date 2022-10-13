@@ -13,5 +13,5 @@ Plans/future objectives (in order of importance)
 3. Improve readability
 4. ~~Create a plot point counter~~
 5. Switch to CSS for node styling?
-6. Simplify code
+6. ~~Simplify code~~
 7. Make the code not hard coded
