@@ -98,7 +98,7 @@ public class Main extends Application {
     Line c10c11 = new Line();
     Line c11c12 = new Line();
     Line c12c1 = new Line();
-    
+
     //identifying vectors with labels
     Label L1Identity = new Label("L1");
     Label L2Identity = new Label("L2");
@@ -113,13 +113,12 @@ public class Main extends Application {
     Label L11Identity = new Label("L11");
     Label L12Identity = new Label("L12");
 
-    
+    //initialized arrays
     Label[] distanceLabels = new Label[12];
     TextField[] textBoxes = new TextField[12];
     Line[] lines = new Line[12];
     Circle[] circles = new Circle[12];
     Label[] lineIdentifiers = new Label[12];
-
 
     //top g
     Group g = new Group();
@@ -167,25 +166,26 @@ public class Main extends Application {
         pointsLeftLabel.setLayoutY(240);
 
         //distance label styling
-        for (int i = 0; i < 12; i++){
+        for (int i = 0; i < 12; i++) {
             distanceLabels[i].setFont(Font.font(20));
             distanceLabels[i].setLayoutX(10);
-            distanceLabels[i].setLayoutY((20*i) + 35);
+            distanceLabels[i].setLayoutY((20 * i) + 35);
         }
 
+
         //style every textbox
-        for (int i = 0; i < 6; i++){
-            textBoxes[i].setPromptText("Point "+(i+1)+"X, Point "+(i+1)+"Y");
+        for (int i = 0; i < 6; i++) {
+            textBoxes[i].setPromptText("Point " + (i + 1) + "X, Point " + (i + 1) + "Y");
             textBoxes[i].setFocusTraversable(false);
             textBoxes[i].setLayoutX(450);
-            textBoxes[i].setLayoutY((i*30)+35);
+            textBoxes[i].setLayoutY((i * 30) + 35);
         }
         int yLayoutMultiplier = 0;
-        for (int i = 6; i < 12; i++){
-            textBoxes[i].setPromptText("Point "+(i+1)+"X, Point "+(i+1)+"Y");
+        for (int i = 6; i < 12; i++) {
+            textBoxes[i].setPromptText("Point " + (i + 1) + "X, Point " + (i + 1) + "Y");
             textBoxes[i].setFocusTraversable(false);
             textBoxes[i].setLayoutX(610);
-            textBoxes[i].setLayoutY((yLayoutMultiplier*30)+35);
+            textBoxes[i].setLayoutY((yLayoutMultiplier * 30) + 35);
             yLayoutMultiplier++;
         }
 
@@ -194,9 +194,9 @@ public class Main extends Application {
         submit.setLayoutY(215);
         clear.setLayoutX(510);
         clear.setLayoutY(215);
-        startCalculation.setLayoutX(600);
+        startCalculation.setLayoutX(627);
         startCalculation.setLayoutY(215);
-        toggleSnap.setLayoutX(660);
+        toggleSnap.setLayoutX(695);
         toggleSnap.setLayoutY(215);
         toggleSnap.setStyle("-fx-background-color: #ff0000");
         factoryReset.setLayoutX(560);
@@ -208,15 +208,18 @@ public class Main extends Application {
         clear.setOnAction(this::handleClearAction);
         startCalculation.setOnAction(this::handleCalculations);
         toggleSnap.setOnAction(this::handleToggleSnap);
+        factoryReset.setOnAction(this::handleResetAction);
 
-                //appending all nodes to group
+        //appending all nodes to group
         g.getChildren().addAll(
                 startCalculation, areaLabel, pointsLeftLabel, DistanceL1, DistanceL2, DistanceL3, DistanceL4, DistanceL5,
                 DistanceL6, DistanceL7, DistanceL8, DistanceL9, DistanceL10, DistanceL11, DistanceL12, identifier,
                 submit, clear, toggleSnap, factoryReset, c1Field, c2Field, c3Field, c4Field, c5Field, c6Field, c7Field, c8Field, c9Field,
-                c10Field, c11Field, c12Field, c1c2, c2c3, c3c4, c4c5, c5c6, c6c7, c7c8, c8c9, c9c10, c10c11, c11c12, c12c1);
+                c10Field, c11Field, c12Field);
+        //, c1c2, c2c3, c3c4, c4c5, c5c6, c6c7, c7c8, c8c9, c9c10, c10c11, c11c12, c12c1
     }
-    public void initializeArrays(){
+
+    public void initializeArrays() {
         textBoxes[0] = c1Field;
         textBoxes[1] = c2Field;
         textBoxes[2] = c3Field;
@@ -283,12 +286,12 @@ public class Main extends Application {
         lineIdentifiers[11] = L12Identity;
     }
 
-    public void drawLines(){
-        for (int i = 0; i < 11; i++){
+    public void drawLines() {
+        for (int i = 0; i < 11; i++) {
             lines[i].setStartX(circles[i].getLayoutX());
             lines[i].setStartY(circles[i].getLayoutY());
-            lines[i].setEndX(circles[i+1].getLayoutX());
-            lines[i].setEndY(circles[i+1].getLayoutY());
+            lines[i].setEndX(circles[i + 1].getLayoutX());
+            lines[i].setEndY(circles[i + 1].getLayoutY());
         }
         c12c1.setStartX(c12.getLayoutX());
         c12c1.setStartY(c12.getLayoutY());
@@ -296,7 +299,6 @@ public class Main extends Application {
         c12c1.setEndY(c1.getLayoutY());
     }
     //boolean variable to make sure nodes are generated only once
-    boolean created = false;
 
     //function for when submit button is clicked
     public void handleSubmitAction(ActionEvent event) {
@@ -310,8 +312,8 @@ public class Main extends Application {
 
                 identifier.setText("Specific Coordinates: (Parsed)");
 
-                for (int i = 0; i<12;i++){
-                    if(!textBoxes[i].getText().isEmpty()){
+                for (int i = 0; i < 12; i++) {
+                    if (!textBoxes[i].getText().isEmpty()) {
                         String[] temp = textBoxes[i].getText().split(",");
 
                         circles[i].setLayoutX(Double.parseDouble(temp[0]));
@@ -327,7 +329,7 @@ public class Main extends Application {
                 //pushes all points back to their original point in the case of a failed parse
                 identifier.setText("Specific Coordinates: (Parse Failed)");
 
-                for (int i = 0; i < 12; i++){
+                for (int i = 0; i < 12; i++) {
                     circles[i].setLayoutX(circles[i].getLayoutX());
                     circles[i].setLayoutY(circles[i].getLayoutY());
                 }
@@ -339,7 +341,7 @@ public class Main extends Application {
     }
 
     public void handleClearAction(ActionEvent event) {
-        for (int i = 0; i < 12; i++){
+        for (int i = 0; i < 12; i++) {
             textBoxes[i].clear();
         }
         identifier.setText("Specific Coordinates: ");
@@ -394,13 +396,15 @@ public class Main extends Application {
     int click = 0;
     int pointsRemaining = 12;
 
+    boolean calculateAble = false;
+
     public void handleEvent(MouseEvent e) {
         print(e);
         click++;
 
-        for (int i = 0; i < 12; i++){
-            if (click == ((2 * i) + 1)){
-                if(snapEnabled){
+        for (int i = 0; i < 12; i++) {
+            if (click == ((2 * i) + 1)) {
+                if (snapEnabled) {
                     circles[i].setLayoutX(parseXSnapCoords());
                     circles[i].setLayoutY(parseYSnapCoords());
                     g.getChildren().add(circles[i]);
@@ -413,6 +417,9 @@ public class Main extends Application {
                 pointsLeftLabel.setText(pointsRemaining + " Points Remaining");
             }
 
+        }
+        if (pointsRemaining == 0) {
+            calculateAble = true;
         }
     }
 
@@ -433,47 +440,70 @@ public class Main extends Application {
         return Math.abs(area / 2.0);
     }
 
+    boolean created = true;
+    boolean resetAble = false;
+
+    public void handleResetAction(ActionEvent event) {
+        if (resetAble) {
+            for (int i = 0; i < 12; i++) {
+
+
+                g.getChildren().removeAll(circles[i],lineIdentifiers[i],lines[i]);
+                distanceLabels[i].setText("Line " + i + " Distance: ");
+            }
+            created = true;
+
+            areaLabel.setText("Total Area: ");
+            pointsRemaining = 12;
+            pointsLeftLabel.setText(pointsRemaining + " Points Remaining");
+            click = 0;
+            resetAble = false;
+        }
+    }
+
     //runs whenever calculate button is pressed
     public void handleCalculations(ActionEvent event) {
-
         //places all x and y points into a separate array for the area function to use
         double[] X = new double[12];
         double[] Y = new double[12];
 
-        for (int i = 0; i < 12; i++){
+        for (int i = 0; i < 12; i++) {
             X[i] = circles[i].getLayoutX();
             Y[i] = circles[i].getLayoutY();
         }
 
-        //max amount of vertices
+        //max amount of vertices and truncating factor
         int n = 12;
-
-        //truncating factor
         int sigFigs = 10;
 
+        if (calculateAble) {
         //prints area into app
         areaLabel.setText("Total Area: " + polygonArea(X, Y, n) * 0.0264583333 * 0.0264583333 + "cm²");
 
         //calculating vector magnitudes using distance formula
-        for(int i = 0; i < 11; i++){
-            distanceLabels[i].setText("Line "+i+" Distance: " + String.format("%.0" +
-                    sigFigs + "f", (0.0264583333 * Math.sqrt(Math.pow((circles[i].getLayoutX() - circles[i+1].getLayoutX()), 2) +
-                    Math.pow(circles[i].getLayoutY() - circles[i+1].getLayoutY(), 2)))) + "cm");
+        for (int i = 0; i < 11; i++) {
+            distanceLabels[i].setText("Line " + i + " Distance: " + String.format("%.0" +
+                    sigFigs + "f", (0.0264583333 * Math.sqrt(Math.pow((circles[i].getLayoutX() - circles[i + 1].getLayoutX()), 2) +
+                    Math.pow(circles[i].getLayoutY() - circles[i + 1].getLayoutY(), 2)))) + "cm");
 
         }
         double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX() - c1.getLayoutX()), 2) + Math.pow(c12.getLayoutY() - c1.getLayoutY(), 2));
         DistanceL12.setText("Line 12 Distance: " + String.format("%.0" + sigFigs + "f", line12) + "cm");
 
         //makes sure that nodes are appended to group only one time
-        if (!created) {
-            g.getChildren().addAll(L1Identity, L2Identity, L3Identity, L4Identity, L5Identity, L6Identity, L7Identity, L8Identity, L9Identity,
-                    L10Identity, L11Identity, L12Identity);
+
+            if (created) {
+                for (int i = 0; i < 12; i++) {
+                    g.getChildren().addAll(lines[i], lineIdentifiers[i]);
+                }
+                created = false;
+            }
+
+            resetAble = true;
+            drawLines();
+            appendLabels();
         }
-        created = true;
-
-        appendLabels();
-        drawLines();
-
+        calculateAble = false;
     }
 
     public void appendLabels() {
