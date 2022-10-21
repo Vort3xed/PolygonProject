@@ -23,8 +23,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-
 public class Main extends Application {
 
     //mouse click coordinates
@@ -123,6 +121,9 @@ public class Main extends Application {
     //top g
     Group g = new Group();
 
+    //assistance classes
+
+
     //launch
     public static void main(String[] args) {
         //gotta make this mf wake up right?
@@ -190,18 +191,11 @@ public class Main extends Application {
         }
 
         //setting positions of buttons
-        submit.setLayoutX(450);
-        submit.setLayoutY(215);
-        clear.setLayoutX(510);
-        clear.setLayoutY(215);
-        startCalculation.setLayoutX(627);
-        startCalculation.setLayoutY(215);
-        toggleSnap.setLayoutX(695);
-        toggleSnap.setLayoutY(215);
-        toggleSnap.setStyle("-fx-background-color: #ff0000");
-        factoryReset.setLayoutX(560);
-        factoryReset.setLayoutY(215);
-
+        Styling.styleButtons(submit,450,215);
+        Styling.styleButtons(clear,510,215);
+        Styling.styleButtons(startCalculation,627,215);
+        Styling.styleButtons(toggleSnap,695,215,"-fx-background-color: #ff0000");
+        Styling.styleButtons(factoryReset,560,215);
 
         //appending buttons to click listener adapter functions
         submit.setOnAction(this::handleSubmitAction);
@@ -219,6 +213,7 @@ public class Main extends Application {
         //, c1c2, c2c3, c3c4, c4c5, c5c6, c6c7, c7c8, c8c9, c9c10, c10c11, c11c12, c12c1
     }
 
+    //appending all nodes to an array so that nodes can be initialized iteratively
     public void initializeArrays() {
         textBoxes[0] = c1Field;
         textBoxes[1] = c2Field;
@@ -286,19 +281,14 @@ public class Main extends Application {
         lineIdentifiers[11] = L12Identity;
     }
 
+    //function that iteratively draws vectors between plotted points
     public void drawLines() {
         for (int i = 0; i < 11; i++) {
-            lines[i].setStartX(circles[i].getLayoutX());
-            lines[i].setStartY(circles[i].getLayoutY());
-            lines[i].setEndX(circles[i + 1].getLayoutX());
-            lines[i].setEndY(circles[i + 1].getLayoutY());
+            Styling.drawVectors(lines[i],circles[i].getLayoutX(),circles[i].getLayoutY(),
+                    circles[i + 1].getLayoutX(),circles[i + 1].getLayoutY());
         }
-        c12c1.setStartX(c12.getLayoutX());
-        c12c1.setStartY(c12.getLayoutY());
-        c12c1.setEndX(c1.getLayoutX());
-        c12c1.setEndY(c1.getLayoutY());
+        Styling.drawVectors(c12c1,c12.getLayoutX(),c12.getLayoutY(),c1.getLayoutX(),c1.getLayoutY());
     }
-    //boolean variable to make sure nodes are generated only once
 
     //function for when submit button is clicked
     public void handleSubmitAction(ActionEvent event) {
@@ -312,12 +302,11 @@ public class Main extends Application {
 
                 identifier.setText("Specific Coordinates: (Parsed)");
 
+                //iteratively
                 for (int i = 0; i < 12; i++) {
                     if (!textBoxes[i].getText().isEmpty()) {
                         String[] temp = textBoxes[i].getText().split(",");
-
-                        circles[i].setLayoutX(Double.parseDouble(temp[0]));
-                        circles[i].setLayoutY(Double.parseDouble(temp[1]));
+                        Styling.styleCircles(circles[i],Double.parseDouble(temp[0]),Double.parseDouble(temp[1]));
                     }
                 }
 
@@ -330,8 +319,7 @@ public class Main extends Application {
                 identifier.setText("Specific Coordinates: (Parse Failed)");
 
                 for (int i = 0; i < 12; i++) {
-                    circles[i].setLayoutX(circles[i].getLayoutX());
-                    circles[i].setLayoutY(circles[i].getLayoutY());
+                    Styling.styleCircles(circles[i],circles[i].getLayoutX(),circles[i].getLayoutY());
                 }
 
             }
@@ -376,11 +364,9 @@ public class Main extends Application {
     public void handleToggleSnap(ActionEvent event) {
         snapEnabled = !snapEnabled;
         if (snapEnabled) {
-            toggleSnap.setStyle("-fx-background-color: #00ff00");
-            toggleSnap.setText("Snap On");
+            Styling.styleButtons(toggleSnap,"Snap On","-fx-background-color: #00ff00");
         } else {
-            toggleSnap.setText("Snap Off");
-            toggleSnap.setStyle("-fx-background-color: #ff0000");
+            Styling.styleButtons(toggleSnap,"Snap Off","-fx-background-color: #ff0000");
         }
     }
 
@@ -405,12 +391,10 @@ public class Main extends Application {
         for (int i = 0; i < 12; i++) {
             if (click == ((2 * i) + 1)) {
                 if (snapEnabled) {
-                    circles[i].setLayoutX(parseXSnapCoords());
-                    circles[i].setLayoutY(parseYSnapCoords());
+                    Styling.styleCircles(circles[i],parseXSnapCoords(),parseYSnapCoords());
                     g.getChildren().add(circles[i]);
                 } else {
-                    circles[i].setLayoutX(x);
-                    circles[i].setLayoutY(y);
+                    Styling.styleCircles(circles[i],x,y);
                     g.getChildren().add(circles[i]);
                 }
                 pointsRemaining--;
@@ -508,15 +492,14 @@ public class Main extends Application {
 
     public void appendLabels() {
         for (int i = 0; i < 11; i++) {
-            lineIdentifiers[i].setLayoutX((circles[i].getLayoutX() + circles[i + 1].getLayoutX()) / 2);
-            lineIdentifiers[i].setLayoutY((circles[i].getLayoutY() + circles[i + 1].getLayoutY()) / 2);
-            lineIdentifiers[i].setTextFill(Color.RED);
+            Styling.styleLineIdentifiers(lineIdentifiers[i],(circles[i].getLayoutX() + circles[i + 1].getLayoutX()) / 2,
+                    (circles[i].getLayoutY() + circles[i + 1].getLayoutY()) / 2,Color.RED);
         }
 
         //appending line labels to group and styling them
-        L12Identity.setLayoutX((c12.getLayoutX() + c1.getLayoutX()) / 2);
-        L12Identity.setLayoutY((c12.getLayoutY() + c1.getLayoutY()) / 2);
-        L12Identity.setTextFill(Color.RED);
+
+        Styling.styleLineIdentifiers(L12Identity,(c12.getLayoutX() + c1.getLayoutX()) / 2,
+                (c12.getLayoutY() + c1.getLayoutY()) / 2,Color.RED);
     }
 
     //function for extracting mouse click coordinates and debugging
