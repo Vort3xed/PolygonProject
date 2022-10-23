@@ -7,8 +7,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-import java.awt.*;
-
 public class Styling {
     public static void drawVectors(Line name, double startX, double startY, double endX, double endY){
         name.setStartX(startX);

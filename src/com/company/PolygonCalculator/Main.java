@@ -7,21 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import static com.company.PolygonCalculator.CalculateArea.polygonArea;
+import static com.company.PolygonCalculator.GeneratePlane.createGridPattern;
 
 public class Main extends Application {
 
@@ -121,12 +119,9 @@ public class Main extends Application {
     //top g
     Group g = new Group();
 
-    //assistance classes
-
-
     //launch
     public static void main(String[] args) {
-        //gotta make this mf wake up right?
+        //waking dis mf up
         Application.launch(args);
     }
 
@@ -174,7 +169,7 @@ public class Main extends Application {
         }
 
 
-        //style every textbox
+        //style every text box
         for (int i = 0; i < 6; i++) {
             textBoxes[i].setPromptText("Point " + (i + 1) + "X, Point " + (i + 1) + "Y");
             textBoxes[i].setFocusTraversable(false);
@@ -290,6 +285,7 @@ public class Main extends Application {
         Styling.drawVectors(c12c1,c12.getLayoutX(),c12.getLayoutY(),c1.getLayoutX(),c1.getLayoutY());
     }
 
+
     //function for when submit button is clicked
     public void handleSubmitAction(ActionEvent event) {
 
@@ -335,30 +331,6 @@ public class Main extends Application {
         identifier.setText("Specific Coordinates: ");
     }
 
-    //function for creating grid
-    public ImagePattern createGridPattern() {
-
-        //square 1 generation
-        double w = 20;
-        double h = 20;
-
-        //object generation for canvas and graphics
-        Canvas canvas = new Canvas(w, h);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        //square styling and replication across the whole screen
-        gc.setStroke(Color.LIGHTGRAY);
-        gc.setFill(Color.LIGHTGRAY.deriveColor(1, 1, 1, 0.2));
-        gc.fillRect(0, 0, w, h);
-        gc.strokeRect(0, 0, w, h);
-
-        //image generation
-        Image image = canvas.snapshot(new SnapshotParameters(), null);
-
-        return new ImagePattern(image, 0, 0, w, h, false);
-
-    }
-
     boolean snapEnabled = false;
 
     public void handleToggleSnap(ActionEvent event) {
@@ -370,18 +342,19 @@ public class Main extends Application {
         }
     }
 
-    public double parseXSnapCoords() {
+    /*
+    public double parseXSnapCoordinates() {
         return Math.round(x / 20) * 20;
     }
 
-    public double parseYSnapCoords() {
+    public double parseYSnapCoordinates() {
         return Math.round(y / 20) * 20;
     }
+     */
 
     //setting public click counter to identify if points have been plotted
     int click = 0;
     int pointsRemaining = 12;
-
     boolean calculateAble = false;
 
     public void handleEvent(MouseEvent e) {
@@ -391,7 +364,7 @@ public class Main extends Application {
         for (int i = 0; i < 12; i++) {
             if (click == ((2 * i) + 1)) {
                 if (snapEnabled) {
-                    Styling.styleCircles(circles[i],parseXSnapCoords(),parseYSnapCoords());
+                    Styling.styleCircles(circles[i],(Math.round(x / 20) * 20),(Math.round(y / 20) * 20));
                     g.getChildren().add(circles[i]);
                 } else {
                     Styling.styleCircles(circles[i],x,y);
@@ -405,23 +378,6 @@ public class Main extends Application {
         if (pointsRemaining == 0) {
             calculateAble = true;
         }
-    }
-
-    //calculates area of polygon
-    public static double polygonArea(double[] X, double[] Y, int n) {
-        double area = 0.0;
-
-        //calculate area using shoelace formula
-        int j = n - 1;
-        for (int i = 0; i < n; i++) {
-            area += (X[j] + X[i]) * (Y[j] - Y[i]);
-
-            //j is previous vertex to i
-            j = i;
-        }
-
-        //return absolute value
-        return Math.abs(area / 2.0);
     }
 
     boolean created = true;
@@ -475,7 +431,6 @@ public class Main extends Application {
         DistanceL12.setText("Line 12 Distance: " + String.format("%.0" + sigFigs + "f", line12) + "cm");
 
         //makes sure that nodes are appended to group only one time
-
             if (created) {
                 for (int i = 0; i < 12; i++) {
                     g.getChildren().addAll(lines[i], lineIdentifiers[i]);
