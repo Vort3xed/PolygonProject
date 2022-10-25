@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -20,94 +19,13 @@ import javafx.stage.Stage;
 
 import static com.company.PolygonCalculator.CalculateArea.polygonArea;
 import static com.company.PolygonCalculator.GeneratePlane.createGridPattern;
+import static com.company.PolygonCalculator.GenerateNodes.*;
 
 public class Main extends Application {
 
     //mouse click coordinates
-    double x;
-    double y;
-
-    //Labels for triangle info
-    Label areaLabel = new Label("Total Area: ");
-    Label pointsLeftLabel = new Label("12 Points Remaining");
-
-    Label DistanceL1 = new Label("Line 1 Distance: ");
-    Label DistanceL2 = new Label("Line 2 Distance: ");
-    Label DistanceL3 = new Label("Line 3 Distance: ");
-    Label DistanceL4 = new Label("Line 4 Distance: ");
-    Label DistanceL5 = new Label("Line 5 Distance: ");
-    Label DistanceL6 = new Label("Line 6 Distance: ");
-    Label DistanceL7 = new Label("Line 7 Distance: ");
-    Label DistanceL8 = new Label("Line 8 Distance: ");
-    Label DistanceL9 = new Label("Line 9 Distance: ");
-    Label DistanceL10 = new Label("Line 10 Distance: ");
-    Label DistanceL11 = new Label("Line 11 Distance: ");
-    Label DistanceL12 = new Label("Line 12 Distance: ");
-
-    //generated circles with coordinates and radius
-    int r = 5;
-    Circle c1 = new Circle(x, y, r);
-    Circle c2 = new Circle(x, y, r);
-    Circle c3 = new Circle(x, y, r);
-    Circle c4 = new Circle(x, y, r);
-    Circle c5 = new Circle(x, y, r);
-    Circle c6 = new Circle(x, y, r);
-    Circle c7 = new Circle(x, y, r);
-    Circle c8 = new Circle(x, y, r);
-    Circle c9 = new Circle(x, y, r);
-    Circle c10 = new Circle(x, y, r);
-    Circle c11 = new Circle(x, y, r);
-    Circle c12 = new Circle(x, y, r);
-
-    //created buttons
-    Label identifier = new Label("Specific Coordinates: ");
-    Button submit = new Button("Submit");
-    Button clear = new Button("Clear");
-    Button startCalculation = new Button("Calculate");
-    Button toggleSnap = new Button("Snap Off");
-    Button factoryReset = new Button("Reset All");
-
-    //created 12 text fields for manual coordinate input
-    TextField c1Field = new TextField();
-    TextField c2Field = new TextField();
-    TextField c3Field = new TextField();
-    TextField c4Field = new TextField();
-    TextField c5Field = new TextField();
-    TextField c6Field = new TextField();
-    TextField c7Field = new TextField();
-    TextField c8Field = new TextField();
-    TextField c9Field = new TextField();
-    TextField c10Field = new TextField();
-    TextField c11Field = new TextField();
-    TextField c12Field = new TextField();
-
-    //created lines to connect all plotted points
-    Line c1c2 = new Line();
-    Line c2c3 = new Line();
-    Line c3c4 = new Line();
-    Line c4c5 = new Line();
-    Line c5c6 = new Line();
-    Line c6c7 = new Line();
-    Line c7c8 = new Line();
-    Line c8c9 = new Line();
-    Line c9c10 = new Line();
-    Line c10c11 = new Line();
-    Line c11c12 = new Line();
-    Line c12c1 = new Line();
-
-    //identifying vectors with labels
-    Label L1Identity = new Label("L1");
-    Label L2Identity = new Label("L2");
-    Label L3Identity = new Label("L3");
-    Label L4Identity = new Label("L4");
-    Label L5Identity = new Label("L5");
-    Label L6Identity = new Label("L6");
-    Label L7Identity = new Label("L7");
-    Label L8Identity = new Label("L8");
-    Label L9Identity = new Label("L9");
-    Label L10Identity = new Label("L10");
-    Label L11Identity = new Label("L11");
-    Label L12Identity = new Label("L12");
+    static double x;
+    static double y;
 
     //initialized arrays
     Label[] distanceLabels = new Label[12];
@@ -138,7 +56,6 @@ public class Main extends Application {
         //associating e to function using mouse click event
         EventHandler<MouseEvent> handler = this::handleEvent;
 
-
         //attaching click handlers for stage and scene
         stage.addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
         scene.addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
@@ -146,7 +63,25 @@ public class Main extends Application {
         //make da arrays cuh
         initializeArrays();
 
+        //style the homepage
+        styleBaseNodes();
 
+        //appending buttons to click listener adapter functions
+        submit.setOnAction(this::handleSubmitAction);
+        clear.setOnAction(this::handleClearAction);
+        startCalculation.setOnAction(this::handleCalculations);
+        toggleSnap.setOnAction(this::handleToggleSnap);
+        factoryReset.setOnAction(this::handleResetAction);
+
+
+        //appending all nodes to group
+        g.getChildren().addAll(
+                startCalculation, areaLabel, pointsLeftLabel, DistanceL1, DistanceL2, DistanceL3, DistanceL4, DistanceL5,
+                DistanceL6, DistanceL7, DistanceL8, DistanceL9, DistanceL10, DistanceL11, DistanceL12, identifier,
+                submit, clear, toggleSnap, factoryReset, c1Field, c2Field, c3Field, c4Field, c5Field, c6Field, c7Field, c8Field, c9Field,
+                c10Field, c11Field, c12Field);
+    }
+    public void styleBaseNodes(){
         //styling area label
         areaLabel.setFont(Font.font(null, FontWeight.BOLD, 20));
         areaLabel.setLayoutX(10);
@@ -191,21 +126,6 @@ public class Main extends Application {
         Styling.styleButtons(startCalculation,627,215);
         Styling.styleButtons(toggleSnap,695,215,"-fx-background-color: #ff0000");
         Styling.styleButtons(factoryReset,560,215);
-
-        //appending buttons to click listener adapter functions
-        submit.setOnAction(this::handleSubmitAction);
-        clear.setOnAction(this::handleClearAction);
-        startCalculation.setOnAction(this::handleCalculations);
-        toggleSnap.setOnAction(this::handleToggleSnap);
-        factoryReset.setOnAction(this::handleResetAction);
-
-        //appending all nodes to group
-        g.getChildren().addAll(
-                startCalculation, areaLabel, pointsLeftLabel, DistanceL1, DistanceL2, DistanceL3, DistanceL4, DistanceL5,
-                DistanceL6, DistanceL7, DistanceL8, DistanceL9, DistanceL10, DistanceL11, DistanceL12, identifier,
-                submit, clear, toggleSnap, factoryReset, c1Field, c2Field, c3Field, c4Field, c5Field, c6Field, c7Field, c8Field, c9Field,
-                c10Field, c11Field, c12Field);
-        //, c1c2, c2c3, c3c4, c4c5, c5c6, c6c7, c7c8, c8c9, c9c10, c10c11, c11c12, c12c1
     }
 
     //appending all nodes to an array so that nodes can be initialized iteratively
@@ -417,20 +337,20 @@ public class Main extends Application {
         int sigFigs = 10;
 
         if (calculateAble) {
-        //prints area into app
-        areaLabel.setText("Total Area: " + polygonArea(X, Y, n) * 0.0264583333 * 0.0264583333 + "cm²");
+            //prints area into app
+            areaLabel.setText("Total Area: " + polygonArea(X, Y, n) * 0.0264583333 * 0.0264583333 + "cm²");
 
-        //calculating vector magnitudes using distance formula
-        for (int i = 0; i < 11; i++) {
-            distanceLabels[i].setText("Line " + i + " Distance: " + String.format("%.0" +
-                    sigFigs + "f", (0.0264583333 * Math.sqrt(Math.pow((circles[i].getLayoutX() - circles[i + 1].getLayoutX()), 2) +
-                    Math.pow(circles[i].getLayoutY() - circles[i + 1].getLayoutY(), 2)))) + "cm");
+            //calculating vector magnitudes using distance formula
+            for (int i = 0; i < 11; i++) {
+                distanceLabels[i].setText("Line " + i + " Distance: " + String.format("%.0" +
+                        sigFigs + "f", (0.0264583333 * Math.sqrt(Math.pow((circles[i].getLayoutX() - circles[i + 1].getLayoutX()), 2) +
+                        Math.pow(circles[i].getLayoutY() - circles[i + 1].getLayoutY(), 2)))) + "cm");
 
-        }
-        double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX() - c1.getLayoutX()), 2) + Math.pow(c12.getLayoutY() - c1.getLayoutY(), 2));
-        DistanceL12.setText("Line 12 Distance: " + String.format("%.0" + sigFigs + "f", line12) + "cm");
+            }
+            double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX() - c1.getLayoutX()), 2) + Math.pow(c12.getLayoutY() - c1.getLayoutY(), 2));
+            DistanceL12.setText("Line 12 Distance: " + String.format("%.0" + sigFigs + "f", line12) + "cm");
 
-        //makes sure that nodes are appended to group only one time
+            //makes sure that nodes are appended to group only one time
             if (created) {
                 for (int i = 0; i < 12; i++) {
                     g.getChildren().addAll(lines[i], lineIdentifiers[i]);
