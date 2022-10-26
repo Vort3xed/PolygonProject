@@ -24,8 +24,9 @@ Plans/future objectives (in order of importance)
 Clone or download the repository to a folder on your machine.
 
 <h3>Step 2:</h3>
-1. Open your IDE and run the `Main.java` file 
+1. Open your IDE and run the `Main.java` file
+
 2. If no IDE is installed:
-   1. <p>Navigate to the folder with the Main.java file in command prompt.</p>
-   2. <p>Compile the code by entering `javac Main.java` into command prompt.</p>
-   3. <p>Then run the code by entering `java Main` into command prompt.</p>
+Navigate to the folder with the Main.java file in command prompt.
+Compile the code by entering javac Main.java into command prompt.
+Then run the code by entering java Main into command prompt.
