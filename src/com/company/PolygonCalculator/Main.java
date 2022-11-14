@@ -45,12 +45,9 @@ public class Main extends Application {
 
     //initializing program
     public void start(Stage stage) {
-        //scene styling and initialization
         Scene scene = new Scene(g, 800, 600);
-        stage.setScene(scene);
-        stage.setTitle("Polygon Calculator");
         scene.setFill(createGridPattern());
-        stage.setResizable(true);
+        Styling.styleStage(stage,scene,"Polygon Calculator",true);
         stage.show();
 
         //associating e to function using mouse click event
@@ -62,8 +59,6 @@ public class Main extends Application {
 
         //make da arrays cuh
         initializeArrays();
-
-        //style the homepage
         styleBaseNodes();
 
         //appending buttons to click listener adapter functions
@@ -82,41 +77,21 @@ public class Main extends Application {
                 c10Field, c11Field, c12Field);
     }
     public void styleBaseNodes(){
-        //styling area label
-        areaLabel.setFont(Font.font(null, FontWeight.BOLD, 20));
-        areaLabel.setLayoutX(10);
-        areaLabel.setLayoutY(15);
+        Styling.styleLabels(areaLabel,Font.font(null, FontWeight.BOLD, 20),10,15);
+        Styling.styleLabels(identifier,Font.font(18),450,5);
+        Styling.styleLabels(pointsLeftLabel,Font.font(15),450,240);
 
-        //angle label styling
-        identifier.setFont(Font.font(18));
-        identifier.setLayoutX(450);
-        identifier.setLayoutY(5);
-
-        pointsLeftLabel.setFont(Font.font(15));
-        pointsLeftLabel.setLayoutX(450);
-        pointsLeftLabel.setLayoutY(240);
-
-        //distance label styling
         for (int i = 0; i < 12; i++) {
-            distanceLabels[i].setFont(Font.font(20));
-            distanceLabels[i].setLayoutX(10);
-            distanceLabels[i].setLayoutY((20 * i) + 35);
+            Styling.styleLabels(distanceLabels[i],Font.font(20),10,(20 * i) + 35);
         }
-
-
-        //style every text box
         for (int i = 0; i < 6; i++) {
-            textBoxes[i].setPromptText("Point " + (i + 1) + "X, Point " + (i + 1) + "Y");
-            textBoxes[i].setFocusTraversable(false);
-            textBoxes[i].setLayoutX(450);
-            textBoxes[i].setLayoutY((i * 30) + 35);
+            Styling.styleTextBoxes(textBoxes[i],"Point " + (i + 1) + "X, Point " + (i + 1) + "Y",
+                    false,450,(i * 30) + 35);
         }
         int yLayoutMultiplier = 0;
         for (int i = 6; i < 12; i++) {
-            textBoxes[i].setPromptText("Point " + (i + 1) + "X, Point " + (i + 1) + "Y");
-            textBoxes[i].setFocusTraversable(false);
-            textBoxes[i].setLayoutX(610);
-            textBoxes[i].setLayoutY((yLayoutMultiplier * 30) + 35);
+            Styling.styleTextBoxes(textBoxes[i],"Point " + (i + 1) + "X, Point " + (i + 1) + "Y",
+                    false,610,(yLayoutMultiplier * 30) + 35);
             yLayoutMultiplier++;
         }
 
@@ -204,7 +179,6 @@ public class Main extends Application {
         }
         Styling.drawVectors(c12c1,c12.getLayoutX(),c12.getLayoutY(),c1.getLayoutX(),c1.getLayoutY());
     }
-
 
     //function for when submit button is clicked
     public void handleSubmitAction(ActionEvent event) {
@@ -337,20 +311,20 @@ public class Main extends Application {
         int sigFigs = 10;
 
         if (calculateAble) {
-            //prints area into app
-            areaLabel.setText("Total Area: " + polygonArea(X, Y, n) * 0.0264583333 * 0.0264583333 + "cm²");
+        //prints area into app
+        areaLabel.setText("Total Area: " + polygonArea(X, Y, n) * 0.0264583333 * 0.0264583333 + "cm²");
 
-            //calculating vector magnitudes using distance formula
-            for (int i = 0; i < 11; i++) {
-                distanceLabels[i].setText("Line " + i + " Distance: " + String.format("%.0" +
-                        sigFigs + "f", (0.0264583333 * Math.sqrt(Math.pow((circles[i].getLayoutX() - circles[i + 1].getLayoutX()), 2) +
-                        Math.pow(circles[i].getLayoutY() - circles[i + 1].getLayoutY(), 2)))) + "cm");
+        //calculating vector magnitudes using distance formula
+        for (int i = 0; i < 11; i++) {
+            distanceLabels[i].setText("Line " + i + " Distance: " + String.format("%.0" +
+                    sigFigs + "f", (0.0264583333 * Math.sqrt(Math.pow((circles[i].getLayoutX() - circles[i + 1].getLayoutX()), 2) +
+                    Math.pow(circles[i].getLayoutY() - circles[i + 1].getLayoutY(), 2)))) + "cm");
 
-            }
-            double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX() - c1.getLayoutX()), 2) + Math.pow(c12.getLayoutY() - c1.getLayoutY(), 2));
-            DistanceL12.setText("Line 12 Distance: " + String.format("%.0" + sigFigs + "f", line12) + "cm");
+        }
+        double line12 = 0.0264583333 * Math.sqrt(Math.pow((c12.getLayoutX() - c1.getLayoutX()), 2) + Math.pow(c12.getLayoutY() - c1.getLayoutY(), 2));
+        DistanceL12.setText("Line 12 Distance: " + String.format("%.0" + sigFigs + "f", line12) + "cm");
 
-            //makes sure that nodes are appended to group only one time
+        //makes sure that nodes are appended to group only one time
             if (created) {
                 for (int i = 0; i < 12; i++) {
                     g.getChildren().addAll(lines[i], lineIdentifiers[i]);
